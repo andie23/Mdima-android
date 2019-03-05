@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">MDIMA</string>
+    <string name="primary_location">Open primary location</string>
+    <string name="pl_description">
+        View load shedding schedule for your designated
+        location (set as primary)
+    </string>
+    <string name="view_schedule">Open</string>
+    <string name="all_locations">Browse Locations</string>
+    <string name="al_description">
+        Browse through regions, locations and areas to
+        view schedules
+    </string>
+    <string name="gpsl_location">Detect current location</string>
+    <string name="gpsl_description">
+        Retrieve your current location via GPS and view it\'s
+        load shedding schedule
+    </string>
+    <string name="tracked_location">Browse tracked locations</string>
+    <string name="tl_description">
+        Select and view load shedding schedules for your tracked
+        locations
+    </string>
 </resources>
