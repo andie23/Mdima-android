@@ -3,6 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="defaultButton">#F7F8F8</color>
-    <color name="defaultButtonText">#3C3B3B</color>
+    <color name="defaultButtonColor">#F7F8F8</color>
+    <color name="defaultButtonTextColor">#3C3B3B</color>
+    <color name="cardLinkHeaderColor">#00574B</color>
 </resources>

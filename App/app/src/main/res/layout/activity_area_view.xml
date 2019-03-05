@@ -27,6 +27,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <TextView
+                        android:textColor="@color/cardLinkHeaderColor"
                         android:text="@string/location_placeholder"
                         android:textAppearance="@android:style/TextAppearance.Large"
                         android:layout_width="wrap_content"
@@ -85,8 +86,8 @@
                 android:text="@string/full_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonText"
-                android:background="@color/defaultButton"
+                android:textColor="@color/defaultButtonTextColor"
+                android:background="@color/defaultButtonColor"
                 />
 
             <Button
@@ -94,16 +95,16 @@
                 android:text="@string/near_by_locations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonText"
-                android:background="@color/defaultButton"/>
+                android:textColor="@color/defaultButtonTextColor"
+                android:background="@color/defaultButtonColor"/>
 
             <Button
                 android:layout_marginTop="10dp"
                 android:text="@string/track_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonText"
-                android:background="@color/defaultButton"
+                android:textColor="@color/defaultButtonTextColor"
+                android:background="@color/defaultButtonColor"
                 />
 
             <Button
@@ -111,8 +112,8 @@
                 android:text="@string/make_primary_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonText"
-                android:background="@color/defaultButton"
+                android:textColor="@color/defaultButtonTextColor"
+                android:background="@color/defaultButtonColor"
                 />
         </LinearLayout>
     </ScrollView>
