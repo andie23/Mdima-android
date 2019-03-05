@@ -24,4 +24,16 @@ public class GroupEntity {
     public String getGroupName() {
         return groupName;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAreaId(int areaId) {
+        this.areaId = areaId;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 }
