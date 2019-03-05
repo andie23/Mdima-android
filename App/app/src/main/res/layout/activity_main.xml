@@ -39,6 +39,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Button
+                        android:onClick="openPrimaryLocation"
                         android:layout_marginTop="10dp"
                         android:text="@string/full_schedule"
                         android:layout_width="match_parent"
