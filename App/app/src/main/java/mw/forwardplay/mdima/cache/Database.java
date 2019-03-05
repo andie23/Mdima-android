@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 @android.arch.persistence.room.Database(entities = {GroupEntity.class, LocationEntity.class,
-        MonitoredLocationEntity.class, RegionEntity.class, ScheduleEntity.class
+        MonitoredLocationEntity.class, RegionEntity.class, ScheduleEntity.class, AreaEntity.class
 }, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
     public static final String DATABASE_NAME = "mdima_local_cache";
@@ -19,9 +19,10 @@ public abstract class Database extends RoomDatabase {
         }
         return INSTANCE;
     }
+    public abstract AreaDao areaDao();
     public abstract GroupDao groupDao();
-    public abstract  LocationDao locationDao();
-    public abstract  MonitoredLocationDao monitoredLocationDao();
+    public abstract LocationDao locationDao();
+    public abstract MonitoredLocationDao monitoredLocationDao();
     public abstract RegionDao regionDao();
     public abstract ScheduleDao scheduleDao();
 }
