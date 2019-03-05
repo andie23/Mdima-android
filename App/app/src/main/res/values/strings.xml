@@ -21,14 +21,18 @@
         Select and view load shedding schedules for your tracked
         locations
     </string>
+    <string name="date">Date:</string>
     <string name="location_placeholder">LOCATION NAME</string>
     <string name="number_of_blackouts">Number of blackouts:</string>
     <string name="number_of_blackouts_placeholder">0</string>
     <string name="average_duration">Average Duration(Hours):</string>
-    <string name="average_duration_placeholder">0</string>
+    <string name="duration">Duration:</string>
+    <string name="duration_placeholder">0</string>
     <string name="next_blackout">Next blackout on:</string>
-    <string name="next_blackout_date_placeholder">00/00/0000</string>
-    <string name="next_blackout_time_placeholder">00:00:00</string>
+    <string name="starting_time">Starting time:</string>
+    <string name="finishing_time">Finishing time:</string>
+    <string name="date_placeholder">00/00/0000</string>
+    <string name="time_placeholder">00:00:00</string>
     <string name="full_schedule">View full schedule</string>
     <string name="near_by_locations">Near by locations</string>
     <string name="track_location">Track this location</string>

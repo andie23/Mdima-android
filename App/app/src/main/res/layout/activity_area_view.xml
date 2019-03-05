@@ -29,6 +29,7 @@
                     <TextView
                         android:textColor="@color/cardLinkHeaderColor"
                         android:text="@string/location_placeholder"
+                        android:textStyle="bold"
                         android:textAppearance="@android:style/TextAppearance.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -42,13 +43,13 @@
 
                     <TextView
                         android:layout_marginTop="5dp"
-                        android:text="@string/next_blackout_date_placeholder"
+                        android:text="@string/date_placeholder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
                         android:layout_marginTop="5dp"
-                        android:text="@string/next_blackout_time_placeholder"
+                        android:text="@string/time_placeholder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -74,7 +75,7 @@
 
                     <TextView
                         android:layout_marginTop="5dp"
-                        android:text="@string/average_duration_placeholder"
+                        android:text="@string/duration_placeholder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
