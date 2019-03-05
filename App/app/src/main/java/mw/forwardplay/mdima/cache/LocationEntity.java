@@ -8,6 +8,8 @@ import android.arch.persistence.room.PrimaryKey;
 public class LocationEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "region_id")
+    private int regionId;
     @ColumnInfo(name = "name")
     private String name;
 
@@ -15,8 +17,17 @@ public class LocationEntity {
         return id;
     }
 
+    public int getRegionId()
+    {
+        return regionId;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setRegionId(int regionId) {
+        this.regionId = regionId;
     }
 
     public void setId(int id) {
