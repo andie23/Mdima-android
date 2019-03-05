@@ -8,7 +8,7 @@ import java.util.List;
 @Dao
 public interface MonitoredLocationDao {
     @Query("SELECT * FROM monitored_locations")
-    public List<MonitoredLocationDao> fetchAll();
+    public List<MonitoredLocationEntity> fetchAll();
     @Query("SELECT * FROM monitored_locations WHERE is_primary=1")
     public MonitoredLocationEntity fetchPrimaryLocation();
 }
