@@ -11,7 +11,7 @@ public abstract class Database extends RoomDatabase {
     public static final String DATABASE_NAME = "mdima_local_cache";
     private static Database INSTANCE = null;
 
-    public static Database getInstance(Context context)
+    public synchronized static Database getInstance(Context context)
     {
         if (INSTANCE==null)
         {
