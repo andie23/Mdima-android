@@ -7,6 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "schedules")
 public class ScheduleEntity {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
     @ColumnInfo(name = "date")
     private long date;
@@ -16,8 +17,8 @@ public class ScheduleEntity {
     private long finishTime;
     @ColumnInfo(name = "duration")
     private int duration;
-    @ColumnInfo(name = "group_id")
-    private int groupId;
+    @ColumnInfo(name = "group_name")
+    private String groupName;
 
     public int getId() {
         return id;
@@ -27,8 +28,8 @@ public class ScheduleEntity {
         return duration;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public String getGroupName() {
+        return groupName;
     }
 
     public long getDate() {
@@ -59,8 +60,8 @@ public class ScheduleEntity {
         this.finishTime = finishTime;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public void setStartingTime(long startingTime) {

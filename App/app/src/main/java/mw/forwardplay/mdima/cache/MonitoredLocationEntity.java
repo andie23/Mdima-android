@@ -7,6 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "monitored_locations")
 public class MonitoredLocationEntity {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
     @ColumnInfo(name = "area_id")
     private int areaId;

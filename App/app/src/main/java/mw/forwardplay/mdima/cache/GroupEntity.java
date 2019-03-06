@@ -7,9 +7,10 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "groups")
 public class GroupEntity {
     @PrimaryKey(autoGenerate = true )
+    @ColumnInfo(name = "id")
     private int id;
-    @ColumnInfo(name = "group_name")
-    private String groupName;
+    @ColumnInfo(name = "name")
+    private String name;
     @ColumnInfo(name = "area_id")
     private int areaId;
 
@@ -21,8 +22,8 @@ public class GroupEntity {
         return areaId;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getName() {
+        return name;
     }
 
     public void setId(int id) {
@@ -33,7 +34,7 @@ public class GroupEntity {
         this.areaId = areaId;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
