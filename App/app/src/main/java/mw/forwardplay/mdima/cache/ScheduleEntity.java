@@ -13,7 +13,7 @@ public class ScheduleEntity {
     private long date;
     @ColumnInfo(name = "starting_time")
     private long startingTime;
-    @ColumnInfo(name = "finish_time")
+    @ColumnInfo(name = "finishing_time")
     private long finishTime;
     @ColumnInfo(name = "duration")
     private int duration;

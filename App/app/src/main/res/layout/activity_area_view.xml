@@ -26,13 +26,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
-                        android:textColor="@color/cardLinkHeaderColor"
-                        android:text="@string/location_placeholder"
-                        android:textStyle="bold"
-                        android:textAppearance="@android:style/TextAppearance.Large"
+                        android:id="@+id/locationName"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="@string/location_placeholder"
+                        android:textAppearance="@android:style/TextAppearance.Large"
+                        android:textColor="@color/cardLinkHeaderColor"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_marginTop="15dp"
@@ -42,29 +44,33 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="@string/date_placeholder"
+                        android:id="@+id/blackoutDate"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/date_placeholder" />
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:text="@string/time_placeholder"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/startingTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="5dp"
-                            android:text="@string/time_placeholder"
+                            android:text="@string/time_placeholder" />
+
+                        <TextView
+                            android:id="@+id/finishingTime"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/time_placeholder" />
                     </LinearLayout>
 
 
@@ -79,11 +85,12 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/numberOfBlackouts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="5dp"
-                            android:text="@string/number_of_blackouts_placeholder"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:text="@string/number_of_blackouts_placeholder" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -97,11 +104,12 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:text="@string/duration_placeholder"
+                            android:id="@+id/averageDuration"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/duration_placeholder" />
                     </LinearLayout>
 
 

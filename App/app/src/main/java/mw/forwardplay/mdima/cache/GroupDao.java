@@ -15,7 +15,7 @@ public interface GroupDao {
     @Query("SELECT * FROM groups WHERE name =:groupName")
     public List<GroupEntity> fetchAllByName(String groupName);
     @Query("SELECT * FROM groups WHERE area_id = :areaId")
-    public List<GroupEntity> fetchByArea(int areaId);
+    public GroupEntity fetchByAreaId(int areaId);
     @Insert
     public void add(GroupEntity groupEntity);
     @Update

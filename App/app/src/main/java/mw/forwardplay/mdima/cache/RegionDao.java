@@ -10,11 +10,11 @@ import java.util.List;
 
 @Dao
 public interface RegionDao {
-    @Query("SELECT * FROM region")
+    @Query("SELECT * FROM regions")
     public List<RegionEntity> fetchAll();
-    @Query("SELECT * FROM  region WHERE id=:id")
+    @Query("SELECT * FROM  regions WHERE id=:id")
     public RegionEntity fetchById(int id);
-    @Query("SELECT * FROM region WHERE name=:name")
+    @Query("SELECT * FROM regions WHERE name=:name")
     public RegionEntity fetchByName(String name);
     @Insert
     public void add(RegionEntity regionEntity);
