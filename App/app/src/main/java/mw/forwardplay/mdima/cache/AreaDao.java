@@ -1,7 +1,10 @@
 package mw.forwardplay.mdima.cache;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -15,4 +18,10 @@ public interface AreaDao {
     public AreaEntity fetchByAreaName(String name);
     @Query("SELECT * FROM areas WHERE id=:id")
     public AreaEntity fetchByAreaId(int id);
+    @Insert
+    public void add(AreaEntity areaEntity);
+    @Update
+    public void update(AreaEntity areaEntity);
+    @Delete
+    public void delete(AreaEntity areaEntity);
 }
