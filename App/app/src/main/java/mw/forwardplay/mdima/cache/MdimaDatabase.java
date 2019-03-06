@@ -7,15 +7,15 @@ import android.content.Context;
 @android.arch.persistence.room.Database(entities = {GroupEntity.class, LocationEntity.class,
         MonitoredLocationEntity.class, RegionEntity.class, ScheduleEntity.class, AreaEntity.class
 }, version = 1, exportSchema = false)
-public abstract class Database extends RoomDatabase {
+public abstract class MdimaDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "mdima_local_cache";
-    private static Database INSTANCE = null;
+    private static MdimaDatabase INSTANCE = null;
 
-    public synchronized static Database getInstance(Context context)
+    public synchronized static MdimaDatabase getInstance(Context context)
     {
         if (INSTANCE==null)
         {
-            INSTANCE = Room.databaseBuilder(context, Database.class, DATABASE_NAME)
+            INSTANCE = Room.databaseBuilder(context, MdimaDatabase.class, DATABASE_NAME)
                     .allowMainThreadQueries()
                     .build();
         }
