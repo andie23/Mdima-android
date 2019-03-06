@@ -37,4 +37,11 @@
     <string name="near_by_locations">Near by locations</string>
     <string name="track_location">Track this location</string>
     <string name="make_primary_location">Make primary location</string>
+    <string-array name="main_options">
+        <item>Primary location schedules</item>
+        <item>Tracked Locations schedules</item>
+        <item>Browse Locations</item>
+        <item>Detect Location(GPS)</item>
+        <item>Settings</item>
+    </string-array>
 </resources>
