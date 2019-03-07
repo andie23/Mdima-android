@@ -12,7 +12,6 @@
 
         <TextView
             android:id="@+id/cardItemTitle"
-            android:textStyle="bold"
             android:textAppearance="@android:style/TextAppearance.Large"
             android:text="Title"
             android:layout_width="wrap_content"

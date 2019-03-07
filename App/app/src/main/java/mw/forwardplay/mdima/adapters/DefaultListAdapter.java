@@ -3,6 +3,7 @@ package mw.forwardplay.mdima.adapters;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -13,9 +14,15 @@ import mw.forwardplay.mdima.R;
 
 public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.ViewHolder> {
 
+    private ListEventListerner eventListerner;
     private List<ListData> listData;
     public DefaultListAdapter(List<ListData> listData) {
         this.listData = listData;
+    }
+
+    interface ListEventListerner
+    {
+        void onClick(int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -48,6 +55,18 @@ public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.
 
         titleText.setText(dataSet.getTitle());
         descriptionText.setText(dataSet.getDescription());
+
+        final int itemPostion = position;
+        if(eventListerner!=null)
+        {
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    eventListerner.onClick(itemPostion);
+                }
+            });
+
+        }
     }
 
     @Override
