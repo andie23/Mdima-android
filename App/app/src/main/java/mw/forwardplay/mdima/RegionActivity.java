@@ -27,13 +27,7 @@ public class RegionActivity extends AppCompatActivity {
     private List<RegionEntity> getRegionEntities() {
         MdimaDatabase database = MdimaDatabase.getInstance(this);
         List<RegionEntity> regionEntities = database.regionDao().fetchAll();
-
-        if (regionEntities!=null)
-        {
-            return regionEntities;
-        }
-
-        return null;
+        return regionEntities!=null ? regionEntities : null;
     }
 
     List<ListData> castToListData(List<RegionEntity> regionEntities)
@@ -55,8 +49,6 @@ public class RegionActivity extends AppCompatActivity {
         List<RegionEntity> regionEntities = getRegionEntities();
         if(regionEntities.isEmpty())
             return;
-
-
         final List<ListData> listData = castToListData(regionEntities);
         DefaultListAdapter adapter = new DefaultListAdapter(listData);
         RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
@@ -69,7 +61,7 @@ public class RegionActivity extends AppCompatActivity {
                         LocationActivity.class);
                 ListData regionListData = listData.get(position);
                 int regionId = regionListData.getId();
-                locationIntent.putExtra("region_id", regionId);
+                locationIntent.putExtra(LocationActivity.LOCATIONS_BY_REGION, regionId);
                 startActivity(locationIntent);
             }
         });
