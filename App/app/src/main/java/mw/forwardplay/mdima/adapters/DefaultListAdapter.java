@@ -12,24 +12,10 @@ import mw.forwardplay.mdima.R;
 
 
 public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.ViewHolder> {
-    public class ListData{
-        private int id;
-        private String title;
-        private String description;
-
-        public int getId() { return id; }
-        public String getDescription() { return description; }
-        public String getTitle() { return title; }
-        public void setDescription(String description) { this.description = description; }
-        public void setTitle(String title) { this.title = title; }
-        public void setId(int id) { this.id = id; }
-    }
 
     private List<ListData> listData;
-
-    public void DefaultListAdapter(List<ListData> dataSet)
-    {
-        this.listData = dataSet;
+    public DefaultListAdapter(List<ListData> listData) {
+        this.listData = listData;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -60,8 +46,8 @@ public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.
         TextView titleText = (TextView) cardView.findViewById(R.id.cardItemTitle);
         TextView descriptionText = (TextView) cardView.findViewById(R.id.cardItemDescription);
 
-        titleText.setText(dataSet.title);
-        descriptionText.setText(dataSet.description);
+        titleText.setText(dataSet.getTitle());
+        descriptionText.setText(dataSet.getDescription());
     }
 
     @Override

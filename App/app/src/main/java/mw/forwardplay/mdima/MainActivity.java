@@ -27,10 +27,19 @@ public class MainActivity extends AppCompatActivity {
     {
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               if(i == 1){
-                   Intent areaViewIntent = new Intent(MainActivity.this, AreaViewActivity.class);
-                   startActivity(areaViewIntent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+               switch(position)
+               {
+                   case 0:
+                      Intent regionIntent = new Intent(MainActivity.this,
+                              RegionActivity.class);
+                      startActivity(regionIntent);
+                      break;
+                   case 1:
+                       Intent areaViewIntent = new Intent(MainActivity.this,
+                               AreaViewActivity.class);
+                       startActivity(areaViewIntent);
+                       break;
                }
             }
         };
