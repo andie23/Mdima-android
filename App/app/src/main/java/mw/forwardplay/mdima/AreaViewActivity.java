@@ -1,5 +1,6 @@
 package mw.forwardplay.mdima;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import mw.forwardplay.mdima.cache.ScheduleDao;
 import mw.forwardplay.mdima.cache.ScheduleEntity;
 
 public class AreaViewActivity extends AppCompatActivity {
+    public final static String AREA_VIEW_BY_ID = "area_view_by_id";
+    private int areaId;
     private TextView locationName;
     private TextView blackoutDate;
     private TextView startingTime;
@@ -36,6 +39,8 @@ public class AreaViewActivity extends AppCompatActivity {
         numberOfBlackouts = (TextView) findViewById(R.id.numberOfBlackouts);
         averageDuration = (TextView) findViewById(R.id.averageDuration);
 
+        Intent areaViewIntent = getIntent();
+        areaId = areaViewIntent.getIntExtra(AREA_VIEW_BY_ID, 0);
         setLocationInformation();
     }
 
@@ -46,7 +51,7 @@ public class AreaViewActivity extends AppCompatActivity {
         GroupDao groupDao = db.groupDao();
         ScheduleDao scheduleDao = db.scheduleDao();
 
-        AreaEntity areaEntity = areaDao.fetchByAreaName("chimwankhunda");
+        AreaEntity areaEntity = areaDao.fetchByAreaId(areaId);
 
         if(areaEntity!=null)
         {

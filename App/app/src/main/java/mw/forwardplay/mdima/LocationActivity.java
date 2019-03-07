@@ -69,6 +69,8 @@ public class LocationActivity extends AppCompatActivity {
             public void onClick(int position) {
                 Intent areaIntent = new Intent(LocationActivity.this,
                         AreaActivity.class);
+                int locationId = locationListData.get(position).getId();
+                areaIntent.putExtra(AreaActivity.AREAS_BY_LOCATION, locationId);
                 startActivity(areaIntent);
             }
         });
