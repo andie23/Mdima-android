@@ -37,116 +37,59 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/areaNumberOfBlackouts"
                         android:layout_marginTop="15dp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        android:text="@string/next_blackout"
+                        android:text="@string/number_of_blackouts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:id="@+id/blackoutDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:id="@+id/areaAverageHours"
                         android:layout_marginTop="5dp"
-                        android:text="@string/date_placeholder" />
-
-                    <LinearLayout
-                        android:orientation="horizontal"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="@string/average_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:onClick="onShowAllSchedules"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/full_schedule"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@color/defaultButtonColor"
+                        android:textColor="@color/defaultButtonTextColor"
+                        />
 
-                        <TextView
-                            android:id="@+id/startingTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/time_placeholder" />
-
-                        <TextView
-                            android:id="@+id/finishingTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/time_placeholder" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:text="@string/near_by_locations"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textStyle="bold"
-                            android:text="@string/number_of_blackouts"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:background="@color/defaultButtonColor"
+                        android:textColor="@color/defaultButtonTextColor"/>
 
-                        <TextView
-                            android:id="@+id/numberOfBlackouts"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/number_of_blackouts_placeholder" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:text="@string/track_location"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textStyle="bold"
-                            android:text="@string/average_duration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:background="@color/defaultButtonColor"
+                        android:textColor="@color/defaultButtonTextColor"
+                        />
 
-                        <TextView
-                            android:id="@+id/averageDuration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/duration_placeholder" />
-                    </LinearLayout>
-
-
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:text="@string/make_primary_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/defaultButtonColor"
+                        android:textColor="@color/defaultButtonTextColor"
+                        />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
-            <Button
-                android:onClick="onShowAllSchedules"
-                android:layout_marginTop="10dp"
-                android:text="@string/full_schedule"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonTextColor"
-                />
-
-            <Button
-                android:layout_marginTop="10dp"
-                android:text="@string/near_by_locations"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonTextColor"/>
-
-            <Button
-                android:layout_marginTop="10dp"
-                android:text="@string/track_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonTextColor"
-                />
-
-            <Button
-                android:layout_marginTop="10dp"
-                android:text="@string/make_primary_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/defaultButtonTextColor"
-                />
         </LinearLayout>
     </ScrollView>
 

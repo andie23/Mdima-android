@@ -35,11 +35,8 @@ public class AreaViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_view);
         locationName = (TextView) findViewById(R.id.locationName);
-        blackoutDate = (TextView) findViewById(R.id.blackoutDate);
-        startingTime = (TextView) findViewById(R.id.startingTime);
-        finishingTime = (TextView) findViewById(R.id.finishingTime);
-        numberOfBlackouts = (TextView) findViewById(R.id.numberOfBlackouts);
-        averageDuration = (TextView) findViewById(R.id.averageDuration);
+        numberOfBlackouts = (TextView) findViewById(R.id.areaNumberOfBlackouts);
+        averageDuration = (TextView) findViewById(R.id.areaAverageHours);
 
         Intent areaViewIntent = getIntent();
         areaId = areaViewIntent.getIntExtra(AREA_VIEW_BY_ID, 0);
@@ -76,11 +73,8 @@ public class AreaViewActivity extends AppCompatActivity {
                     ScheduleEntity scheduleEntity = scheduleEntities.get(0);
                     int avgDuration = scheduleDao.averageGroupDuration(groupEntity.getName());
                     int blackoutCount = scheduleDao.countGroupBlackouts(groupEntity.getName());
-                    blackoutDate.setText(String.valueOf(scheduleEntity.getDate()));
-                    startingTime.setText(String.valueOf(scheduleEntity.getStartingTime()));
-                    finishingTime.setText(String.valueOf(scheduleEntity.getFinishTime()));
-                    numberOfBlackouts.setText(String.valueOf(blackoutCount));
-                    averageDuration.setText(String.valueOf(avgDuration));
+                    numberOfBlackouts.setText("# " + String.valueOf(blackoutCount) + " Blackouts found");
+                    averageDuration.setText("# " + String.valueOf(avgDuration) + " Hours average duration");
                 }
 
             }

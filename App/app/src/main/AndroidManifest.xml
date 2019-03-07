@@ -24,9 +24,7 @@
         <activity android:name=".AreaViewActivity"
             android:label="Area View"
             />
-        <activity android:name=".MainActivity"
-            android:label="Main Menu"
-            >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

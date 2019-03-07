@@ -1,40 +1,21 @@
 <resources>
-    <string name="app_name">Mdima Loadshedding</string>
+    <string name="app_name">Mdima</string>
     <string name="primary_location">Open primary location</string>
-    <string name="pl_description">
-        View load shedding schedule for your designated
-        location (set as primary)
-    </string>
     <string name="view_schedule">Open</string>
     <string name="all_locations">Browse Locations</string>
-    <string name="al_description">
-        Browse through regions, locations and areas to
-        view schedules
-    </string>
     <string name="gpsl_location">Detect current location</string>
-    <string name="gpsl_description">
-        Retrieve your current location via GPS and view it\'s
-        load shedding schedule
-    </string>
     <string name="tracked_location">Browse tracked locations</string>
-    <string name="tl_description">
-        Select and view load shedding schedules for your tracked
-        locations
-    </string>
     <string name="date">Date:</string>
     <string name="location_placeholder">LOCATION NAME</string>
-    <string name="number_of_blackouts">Number of blackouts:</string>
-    <string name="number_of_blackouts_placeholder">0</string>
-    <string name="average_duration">Average Duration(Hours):</string>
+    <string name="number_of_blackouts">Number of blackouts</string>
+    <string name="average_duration">Average Duration(Hours)</string>
     <string name="duration">Duration:</string>
-    <string name="duration_placeholder">0</string>
-    <string name="next_blackout">Next blackout on:</string>
     <string name="starting_time">Starting time:</string>
     <string name="finishing_time">Finishing time:</string>
     <string name="date_placeholder">00/00/0000</string>
     <string name="time_placeholder">00:00:00</string>
     <string name="full_schedule">View full schedule</string>
-    <string name="near_by_locations">Near by locations</string>
+    <string name="near_by_locations">Similar Locations</string>
     <string name="track_location">Track this location</string>
     <string name="make_primary_location">Make primary location</string>
     <string-array name="main_options">
