@@ -39,9 +39,7 @@
     <string name="make_primary_location">Make primary location</string>
     <string-array name="main_options">
         <item>Browse Locations</item>
-        <item>Primary location schedules</item>
-        <item>Tracked Locations schedules</item>
-        <item>Detect Location(GPS)</item>
-        <item>Settings</item>
+        <item>Primary Location</item>
+        <item>Tracked Locations</item>
     </string-array>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ import mw.forwardplay.mdima.cache.ScheduleEntity;
 public class AreaViewActivity extends AppCompatActivity {
     public final static String AREA_VIEW_BY_ID = "area_view_by_id";
     private int areaId;
+    private String groupName;
     private TextView locationName;
     private TextView blackoutDate;
     private TextView startingTime;
@@ -44,6 +46,14 @@ public class AreaViewActivity extends AppCompatActivity {
         setLocationInformation();
     }
 
+    public void onShowAllSchedules(View view)
+    {
+        Intent schedulesIntent = new Intent(AreaViewActivity.this,
+                ScheduleListActivity.class);
+        schedulesIntent.putExtra(ScheduleListActivity.SCHEDULES_BY_GROUP_ID, groupName);
+        startActivity(schedulesIntent);
+    }
+
     void setLocationInformation()
     {
         MdimaDatabase db = MdimaDatabase.getInstance(this);
@@ -57,9 +67,9 @@ public class AreaViewActivity extends AppCompatActivity {
         {
             locationName.setText(areaEntity.getName());
             GroupEntity groupEntity = groupDao.fetchByAreaId(areaEntity.getId());
-
-            if(groupEntity!=null)
+           if(groupEntity!=null)
             {
+                groupName = groupEntity.getName();
                 List<ScheduleEntity> scheduleEntities = scheduleDao.fetchAllByGroupId(groupEntity.getName());
                 if(scheduleEntities.size() >=1)
                 {
