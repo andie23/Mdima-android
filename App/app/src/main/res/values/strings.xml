@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MDIMA</string>
+    <string name="app_name">Mdima Loadshedding</string>
     <string name="primary_location">Open primary location</string>
     <string name="pl_description">
         View load shedding schedule for your designated
@@ -38,9 +38,9 @@
     <string name="track_location">Track this location</string>
     <string name="make_primary_location">Make primary location</string>
     <string-array name="main_options">
+        <item>Browse Locations</item>
         <item>Primary location schedules</item>
         <item>Tracked Locations schedules</item>
-        <item>Browse Locations</item>
         <item>Detect Location(GPS)</item>
         <item>Settings</item>
     </string-array>

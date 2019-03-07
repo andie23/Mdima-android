@@ -19,16 +19,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainOptions = (ListView) findViewById(R.id.fixed_main_options);
         listViewOnClickListerner();
     }
 
     public void listViewOnClickListerner()
     {
-        mainOptions = (ListView) findViewById(R.id.fixed_main_options);
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               if(i == 0){
+               if(i == 1){
                    Intent areaViewIntent = new Intent(MainActivity.this, AreaViewActivity.class);
                    startActivity(areaViewIntent);
                }
