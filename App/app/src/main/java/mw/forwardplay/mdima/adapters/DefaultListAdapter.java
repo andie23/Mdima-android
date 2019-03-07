@@ -20,9 +20,14 @@ public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.
         this.listData = listData;
     }
 
-    interface ListEventListerner
+    public interface ListEventListerner
     {
         void onClick(int position);
+    }
+
+    public void setEventListerner(ListEventListerner listerner)
+    {
+        eventListerner = listerner;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder

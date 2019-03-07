@@ -1,5 +1,6 @@
 package mw.forwardplay.mdima;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +44,7 @@ public class RegionActivity extends AppCompatActivity {
             ListData listDataItem =  new ListData();
             listDataItem.setTitle(regionEntity.getName());
             listDataItem.setDescription("View locations in "+ regionEntity.getName());
+            listDataItem.setId(regionEntity.getId());
             listDataList.add(listDataItem);
         }
         return listDataList;
@@ -53,11 +55,25 @@ public class RegionActivity extends AppCompatActivity {
         List<RegionEntity> regionEntities = getRegionEntities();
         if(regionEntities.isEmpty())
             return;
-        List<ListData> listData = castToListData(regionEntities);
+
+
+        final List<ListData> listData = castToListData(regionEntities);
         DefaultListAdapter adapter = new DefaultListAdapter(listData);
         RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layout);
         recyclerView.setAdapter(adapter);
+        adapter.setEventListerner(new DefaultListAdapter.ListEventListerner() {
+            @Override
+            public void onClick(int position) {
+                Intent locationIntent = new Intent(RegionActivity.this,
+                        LocationActivity.class);
+                ListData regionListData = listData.get(position);
+                int regionId = regionListData.getId();
+                locationIntent.putExtra("region_id", regionId);
+                startActivity(locationIntent);
+            }
+        });
+
 
     }
 }
