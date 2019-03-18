@@ -1,6 +1,7 @@
 package mw.forwardplay.mdima;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,21 +15,25 @@ import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.cache.AreaEntity;
 import mw.forwardplay.mdima.cache.LocationEntity;
 import mw.forwardplay.mdima.cache.MdimaDatabase;
+import mw.forwardplay.mdima.cache.RegionEntity;
+import mw.forwardplay.mdima.commons.CommonToolbar;
 
 public class LocationActivity extends AppCompatActivity {
     public final static String LOCATIONS_BY_REGION="locations_by_region";
     private RecyclerView recyclerView;
     private int regionId;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         recyclerView = (RecyclerView) findViewById(R.id.locationRecycler);
-
+        actionBar = CommonToolbar.getActionbar(this);
         Intent locationsIntent = getIntent();
         regionId = locationsIntent.getIntExtra(LOCATIONS_BY_REGION,0);
-
+        RegionEntity regionEntity = MdimaDatabase.getInstance(this).regionDao().fetchById(regionId);
+        actionBar.setTitle("Locations in " + regionEntity.getName());
         showLocationListByRegion();
     }
 

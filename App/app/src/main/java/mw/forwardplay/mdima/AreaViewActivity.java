@@ -1,8 +1,10 @@
 package mw.forwardplay.mdima;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import mw.forwardplay.mdima.cache.GroupEntity;
 import mw.forwardplay.mdima.cache.MdimaDatabase;
 import mw.forwardplay.mdima.cache.ScheduleDao;
 import mw.forwardplay.mdima.cache.ScheduleEntity;
+import mw.forwardplay.mdima.commons.CommonToolbar;
 
 public class AreaViewActivity extends AppCompatActivity {
     public final static String AREA_VIEW_BY_ID = "area_view_by_id";
@@ -29,11 +32,13 @@ public class AreaViewActivity extends AppCompatActivity {
     private TextView finishingTime;
     private TextView numberOfBlackouts;
     private TextView averageDuration;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_view);
+        actionBar = CommonToolbar.getActionbar(this);
         locationName = (TextView) findViewById(R.id.locationName);
         numberOfBlackouts = (TextView) findViewById(R.id.areaNumberOfBlackouts);
         averageDuration = (TextView) findViewById(R.id.areaAverageHours);
@@ -63,8 +68,9 @@ public class AreaViewActivity extends AppCompatActivity {
         if(areaEntity!=null)
         {
             locationName.setText(areaEntity.getName());
+            actionBar.setTitle(areaEntity.getName());
             GroupEntity groupEntity = groupDao.fetchByAreaId(areaEntity.getId());
-           if(groupEntity!=null)
+            if(groupEntity!=null)
             {
                 groupName = groupEntity.getName();
                 List<ScheduleEntity> scheduleEntities = scheduleDao.fetchAllByGroupId(groupEntity.getName());

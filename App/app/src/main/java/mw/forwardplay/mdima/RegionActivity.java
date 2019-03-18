@@ -1,6 +1,7 @@
 package mw.forwardplay.mdima;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +14,18 @@ import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.cache.MdimaDatabase;
 import mw.forwardplay.mdima.cache.RegionEntity;
+import mw.forwardplay.mdima.commons.CommonToolbar;
 
 public class RegionActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region);
+        actionBar = CommonToolbar.getActionbar(this);
+        actionBar.setTitle("Select Region:");
         recyclerView = (RecyclerView) findViewById(R.id.regionRecyler);
         initiateRecyclerView();
     }

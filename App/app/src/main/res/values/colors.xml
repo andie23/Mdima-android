@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#1A1919</color>
+    <color name="colorPrimaryDark">#161616</color>
+    <color name="colorAccent">#3A3236</color>
+    <color name="textOnBlackBg">#FFFFFF</color>
     <color name="defaultButtonColor">#F5F5F5</color>
     <color name="defaultButtonTextColor">#5C5A5A</color>
     <color name="cardLinkHeaderColor">#00574B</color>

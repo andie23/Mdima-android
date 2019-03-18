@@ -22,5 +22,7 @@
         <item>Browse Locations</item>
         <item>Primary Location</item>
         <item>Tracked Locations</item>
+        <item>GPS Detected Location</item>
+        <item>Settings</item>
     </string-array>
 </resources>
