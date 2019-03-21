@@ -1,13 +1,9 @@
 package mw.forwardplay.mdima;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,25 +12,22 @@ import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.cache.AreaEntity;
 import mw.forwardplay.mdima.cache.LocationEntity;
 import mw.forwardplay.mdima.cache.MdimaDatabase;
-import mw.forwardplay.mdima.commons.CommonToolbar;
 
-public class AreaActivity extends AppCompatActivity {
+public class AreaActivity extends SuperActivity {
     public final static String AREAS_BY_LOCATION="areas_by_location";
     private RecyclerView recyclerView;
     private int locationId;
-    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area);
-        actionBar = CommonToolbar.getActionbar(this);
         recyclerView = (RecyclerView) findViewById(R.id.areaRecycler);
         Intent areaIntent = getIntent();
         locationId = areaIntent.getIntExtra(AREAS_BY_LOCATION, 0);
         LocationEntity locationEntity = MdimaDatabase.getInstance(this).locationDao().fetchById(locationId);
-        actionBar.setTitle("Areas in " + locationEntity.getName());
+        //actionBar.setTitle("Areas in " + locationEntity.getName());
         showAreasByLocationId();
+        super.onCreate(savedInstanceState);
     }
 
     private List<AreaEntity> getAreaEntities()

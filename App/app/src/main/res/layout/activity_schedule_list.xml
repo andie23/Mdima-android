@@ -8,7 +8,7 @@
     tools:context=".ScheduleListActivity"
     android:orientation="vertical"
     >
-    <include layout="@layout/toolbar"></include>
+    <include android:id="@+id/toolbar" layout="@layout/toolbar"></include>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/scheduleRecycler"
         android:layout_width="match_parent"

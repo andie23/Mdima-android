@@ -15,24 +15,20 @@ import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.cache.LocationEntity;
 import mw.forwardplay.mdima.cache.MdimaDatabase;
 import mw.forwardplay.mdima.cache.ScheduleEntity;
-import mw.forwardplay.mdima.commons.CommonToolbar;
 
-public class ScheduleListActivity extends AppCompatActivity {
+public class ScheduleListActivity extends SuperActivity {
     public final static String SCHEDULES_BY_GROUP_ID = "schedules_by_group_name";
     private RecyclerView recyclerView;
     private String groupName;
-    private ActionBar actionBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_list);
         recyclerView = (RecyclerView) findViewById(R.id.scheduleRecycler);
-        actionBar = CommonToolbar.getActionbar(this);
-        actionBar.setTitle("Blackout Schedule:");
+        //actionBar.setTitle("Blackout Schedule:");
         Intent scheduleIntent = getIntent();
         groupName = scheduleIntent.getStringExtra(SCHEDULES_BY_GROUP_ID);
         showSchedule();
+        super.onCreate(savedInstanceState);
     }
 
     private List<ScheduleEntity> getSchedules()

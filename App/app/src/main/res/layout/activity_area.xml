@@ -9,6 +9,7 @@
     tools:context=".AreaActivity"
     >
     <include
+        android:id="@+id/toolbar"
         layout="@layout/toolbar"
         ></include>
     <android.support.v7.widget.RecyclerView

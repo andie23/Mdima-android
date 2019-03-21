@@ -14,20 +14,16 @@ import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.cache.MdimaDatabase;
 import mw.forwardplay.mdima.cache.RegionEntity;
-import mw.forwardplay.mdima.commons.CommonToolbar;
 
-public class RegionActivity extends AppCompatActivity {
+public class RegionActivity extends SuperActivity {
     private RecyclerView recyclerView;
-    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region);
-        actionBar = CommonToolbar.getActionbar(this);
-        actionBar.setTitle("Select Region:");
         recyclerView = (RecyclerView) findViewById(R.id.regionRecyler);
         initiateRecyclerView();
+        super.onCreate(savedInstanceState);
     }
 
     private List<RegionEntity> getRegionEntities() {
