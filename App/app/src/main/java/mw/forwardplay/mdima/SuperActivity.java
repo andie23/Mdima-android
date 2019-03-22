@@ -1,6 +1,8 @@
 package mw.forwardplay.mdima;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +38,8 @@ public abstract class SuperActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Toolbar toolbar = (Toolbar) findViewById(toolbarRes);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setIcon(R.drawable.logo);
         recyclerView = (RecyclerView) findViewById(R.id.defaultRecycler);
         firebaseDatabase = FirebaseDatabase.getInstance();
         fbRegionsRef = firebaseDatabase.getReference("/regions");
