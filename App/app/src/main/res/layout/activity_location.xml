@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".LocationActivity"
     >
-
     <include layout="@layout/toolbar"/>
+    <include layout="@layout/progress_bar"></include>
     <include layout="@layout/recycler_view"></include>
 </LinearLayout>

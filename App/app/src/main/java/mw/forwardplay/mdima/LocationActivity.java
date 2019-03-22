@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,12 +22,15 @@ import mw.forwardplay.mdima.entities.Locations;
 public class LocationActivity extends SuperActivity {
     public final static String LOCATIONS_BY_REGION="locations_by_region";
     private String region;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_location);
         Intent locationsIntent = getIntent();
         region  = locationsIntent.getStringExtra(LOCATIONS_BY_REGION);
+        progressBar = (ProgressBar) findViewById(R.id.spinner);
+        progressBar.setVisibility(View.VISIBLE);
         showLocations();
         super.onCreate(savedInstanceState);
     }
@@ -80,6 +85,7 @@ public class LocationActivity extends SuperActivity {
                         "Unable to retrieve locations", Toast.LENGTH_SHORT).show();
             }
         });
+        progressBar.setVisibility(View.GONE);
     }
 
 }

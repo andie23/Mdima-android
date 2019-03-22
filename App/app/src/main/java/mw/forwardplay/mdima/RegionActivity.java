@@ -3,6 +3,8 @@ package mw.forwardplay.mdima;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,9 +18,13 @@ import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Regions;
 
 public class RegionActivity extends SuperActivity {
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_region);
+        progressBar = (ProgressBar) findViewById(R.id.spinner);
+        progressBar.setVisibility(View.VISIBLE);
         showRegions();
         super.onCreate(savedInstanceState);
     }
@@ -56,6 +62,7 @@ public class RegionActivity extends SuperActivity {
                         }
                     });
                 }
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override

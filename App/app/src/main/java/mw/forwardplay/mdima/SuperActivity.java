@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,7 +29,6 @@ public abstract class SuperActivity extends AppCompatActivity {
     protected static DatabaseReference fbAreasRef;
     protected static DatabaseReference fbSchedulesRef;
     protected static DatabaseReference fbGroupsRef;
-
     protected interface OnClickItemList{
         void onClick(int position);
     }
