@@ -8,14 +8,6 @@
     android:orientation="vertical"
     tools:context=".AreaActivity"
     >
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        ></include>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/areaRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    </android.support.v7.widget.RecyclerView>
+    <include layout="@layout/toolbar"></include>
+    <include layout="@layout/recycler_view"></include>
 </LinearLayout>

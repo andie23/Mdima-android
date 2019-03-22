@@ -6,16 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context=".LocationActivity"
     >
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/locationRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".LocationActivity">
-    </android.support.v7.widget.RecyclerView>
+    <include layout="@layout/toolbar"/>
+    <include layout="@layout/recycler_view"></include>
 </LinearLayout>

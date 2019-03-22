@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar"/>
     <ListView
         android:id="@+id/fixed_main_options"
         android:padding="16dp"

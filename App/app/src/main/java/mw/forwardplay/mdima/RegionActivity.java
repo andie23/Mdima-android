@@ -1,73 +1,68 @@
 package mw.forwardplay.mdima;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
-import mw.forwardplay.mdima.cache.MdimaDatabase;
-import mw.forwardplay.mdima.cache.RegionEntity;
+import mw.forwardplay.mdima.entities.Regions;
 
 public class RegionActivity extends SuperActivity {
-    private RecyclerView recyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_region);
-        recyclerView = (RecyclerView) findViewById(R.id.regionRecyler);
-        initiateRecyclerView();
+        showRegions();
         super.onCreate(savedInstanceState);
     }
 
-    private List<RegionEntity> getRegionEntities() {
-        MdimaDatabase database = MdimaDatabase.getInstance(this);
-        List<RegionEntity> regionEntities = database.regionDao().fetchAll();
-        return regionEntities!=null ? regionEntities : null;
-    }
-
-    List<ListData> castToListData(List<RegionEntity> regionEntities)
+    private void showRegions()
     {
-        List<ListData> listDataList = new ArrayList<>();
-        for(RegionEntity regionEntity: regionEntities)
-        {
-            ListData listDataItem =  new ListData();
-            listDataItem.setTitle(regionEntity.getName());
-            listDataItem.setDescription("View locations in "+ regionEntity.getName());
-            listDataItem.setId(regionEntity.getId());
-            listDataList.add(listDataItem);
-        }
-        return listDataList;
-    }
-
-    void initiateRecyclerView()
-    {
-        List<RegionEntity> regionEntities = getRegionEntities();
-        if(regionEntities.isEmpty())
-            return;
-        final List<ListData> listData = castToListData(regionEntities);
-        DefaultListAdapter adapter = new DefaultListAdapter(listData);
-        RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layout);
-        recyclerView.setAdapter(adapter);
-        adapter.setEventListerner(new DefaultListAdapter.ListEventListerner() {
+        fbRegionsRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(int position) {
-                Intent locationIntent = new Intent(RegionActivity.this,
-                        LocationActivity.class);
-                ListData regionListData = listData.get(position);
-                int regionId = regionListData.getId();
-                locationIntent.putExtra(LocationActivity.LOCATIONS_BY_REGION, regionId);
-                startActivity(locationIntent);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final List<ListData> regionsListData = new ArrayList<>();
+                for(DataSnapshot snapshot: dataSnapshot.getChildren())
+                {
+
+                    Regions region = snapshot.getValue(Regions.class);
+                    StringBuilder regionDescription = new StringBuilder();
+                    regionDescription.append(String.valueOf(region.getLocations().size()))
+                            .append(" location(s) found");
+                    ListData regionData = new ListData();
+                    regionData.setTitle(region.getRegion());
+                    regionData.setDescription(regionDescription.toString());
+                    regionData.setId(region.getRegion());
+                    regionsListData.add(regionData);
+                }
+
+                if (regionsListData.size() >= 1)
+                {
+                    setViewItemList(regionsListData, new OnClickItemList() {
+                        @Override
+                        public void onClick(int position) {
+                            Intent locationsIntent = new Intent(RegionActivity.this,
+                                    LocationActivity.class);
+                            String regionName = regionsListData.get(position).getId();
+                            locationsIntent.putExtra(LocationActivity.LOCATIONS_BY_REGION, regionName);
+                            startActivity(locationsIntent);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(RegionActivity.this, "Couldn't retrieve regions",
+                        Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

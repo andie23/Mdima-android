@@ -1,56 +1,88 @@
 package mw.forwardplay.mdima;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
-import mw.forwardplay.mdima.cache.AreaEntity;
-import mw.forwardplay.mdima.cache.LocationEntity;
-import mw.forwardplay.mdima.cache.MdimaDatabase;
-import mw.forwardplay.mdima.cache.RegionEntity;
+import mw.forwardplay.mdima.entities.Locations;
+import mw.forwardplay.mdima.entities.Regions;
 
 public class LocationActivity extends SuperActivity {
     public final static String LOCATIONS_BY_REGION="locations_by_region";
     private RecyclerView recyclerView;
-    private int regionId;
+    private String region;
+    private HashMap<String, Regions> regionsHashMap;
+    private HashMap<String, Locations> locationsHashMap;
+    private DatabaseReference regionDbRef;
+    private DatabaseReference locationDbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_location);
-        recyclerView = (RecyclerView) findViewById(R.id.locationRecycler);
         Intent locationsIntent = getIntent();
-        regionId = locationsIntent.getIntExtra(LOCATIONS_BY_REGION,0);
-        RegionEntity regionEntity = MdimaDatabase.getInstance(this).regionDao().fetchById(regionId);
-        //actionBar.setTitle("Locations in " + regionEntity.getName());
-        showLocationListByRegion();
+        region = locationsIntent.getStringExtra(LOCATIONS_BY_REGION);
+        regionDbRef = firebaseDatabase.getReference("/regions");
+        locationDbRef = firebaseDatabase.getReference("/locations");
         super.onCreate(savedInstanceState);
     }
 
-    private List<LocationEntity> getLocationEntities()
+    private void setRegionsHashMap()
     {
-        MdimaDatabase db = MdimaDatabase.getInstance(this);
-        List<LocationEntity> locationEntities = db.locationDao().fetchByRegionId(regionId);
-        return locationEntities!=null ? locationEntities : null;
+        regionDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                regionsHashMap = (HashMap<String, Regions>) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(LocationActivity.this, "Failed to retrieve region data",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private List<ListData> castToListData(List<LocationEntity> locationEntities)
+    private void setLocationsHashMap()
+    {
+        locationDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                locationsHashMap = (HashMap<String, Locations>) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(LocationActivity.this, "Failed to retrieve locations",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private List<ListData> castToListData()
     {
         List<ListData> listDataEntities = new ArrayList<>();
+        List<String> locations = regionsHashMap.get(region).getLocations();
 
-        for(LocationEntity locationEntity: locationEntities)
+        for(String locationName: locations)
         {
             ListData listData = new ListData();
-            listData.setId(locationEntity.getId());
-            listData.setTitle(locationEntity.getName());
-            listData.setDescription("View areas in "+ locationEntity.getName());
+            listData.setId(locationName);
+            listData.setTitle(locationName);
+            listData.setDescription(region);
             listDataEntities.add(listData);
         }
         return listDataEntities;
@@ -58,10 +90,7 @@ public class LocationActivity extends SuperActivity {
 
     private void showLocationListByRegion()
     {
-        List<LocationEntity> locationEntities = getLocationEntities();
-        if(locationEntities.isEmpty())
-            return;
-        final List<ListData> locationListData = castToListData(locationEntities);
+        final List<ListData> locationListData = castToListData();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         DefaultListAdapter adapter = new DefaultListAdapter(locationListData);
         recyclerView.setAdapter(adapter);
@@ -71,8 +100,8 @@ public class LocationActivity extends SuperActivity {
             public void onClick(int position) {
                 Intent areaIntent = new Intent(LocationActivity.this,
                         AreaActivity.class);
-                int locationId = locationListData.get(position).getId();
-                areaIntent.putExtra(AreaActivity.AREAS_BY_LOCATION, locationId);
+                String location = locationListData.get(position).getId();
+                areaIntent.putExtra(AreaActivity.AREAS_BY_LOCATION, location);
                 startActivity(areaIntent);
             }
         });
