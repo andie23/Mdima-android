@@ -42,12 +42,16 @@ public abstract class SuperActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.drawable.logo);
         recyclerView = (RecyclerView) findViewById(R.id.defaultRecycler);
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        if(firebaseDatabase==null){
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseDatabase.setPersistenceEnabled(true);
+        }
         fbRegionsRef = firebaseDatabase.getReference("/regions");
         fbLocationsRef = firebaseDatabase.getReference("/locations");
         fbAreasRef = firebaseDatabase.getReference("/areas");
         fbSchedulesRef = firebaseDatabase.getReference("/schedules");
         fbGroupsRef = firebaseDatabase.getReference("/groups");
+
     }
 
     @Override

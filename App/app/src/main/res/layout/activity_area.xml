@@ -9,5 +9,6 @@
     tools:context=".AreaActivity"
     >
     <include layout="@layout/toolbar"></include>
+    <include layout="@layout/progress_bar"></include>
     <include layout="@layout/recycler_view"></include>
 </LinearLayout>
