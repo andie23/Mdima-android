@@ -1,0 +1,15 @@
+Load shedding system bare essentials
+-------------------------------
+
+1. Get up to date load shedding schedules / Retrieve schedules online
+	Time: 1 day
+2. Browse schedules by region, location and area
+    Time: 1 day
+3. Track and receive notifications for specific areas
+	Time: 2 days
+4. Search areas, and locations
+	Time: 2 days
+5. An administrative webportal for managing and 
+	sending schedules to mobile users.
+	Time: 2 days
+	

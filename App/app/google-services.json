@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "805698640687",
+    "firebase_url": "https://mdima-db.firebaseio.com",
+    "project_id": "mdima-db",
+    "storage_bucket": "mdima-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805698640687:android:7362cf68bf66ed67",
+        "android_client_info": {
+          "package_name": "mw.forwardplay.mdima"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805698640687-dvrtdtehhrj3na3h7esm5018rf1moaik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mw.forwardplay.mdima",
+            "certificate_hash": "5c89463924a114d972ea7fa3748a7ab1e8ac8126"
+          }
+        },
+        {
+          "client_id": "805698640687-tbf0gv1ek74mnc6t62fm8uqmuim9ttt8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdTNDc30CXh6cGtapCAv9CJD9v5noxt6U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805698640687-tbf0gv1ek74mnc6t62fm8uqmuim9ttt8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
