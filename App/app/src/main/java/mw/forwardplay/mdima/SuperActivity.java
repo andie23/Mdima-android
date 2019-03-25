@@ -1,6 +1,7 @@
 package mw.forwardplay.mdima;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +28,7 @@ public abstract class SuperActivity extends AppCompatActivity {
     protected static DatabaseReference fbGroupsRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected  void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         recyclerView = (RecyclerView) findViewById(R.id.defaultRecycler);
@@ -37,8 +38,22 @@ public abstract class SuperActivity extends AppCompatActivity {
         fbAreasRef = firebaseDatabase.getReference("/areas");
         fbSchedulesRef = firebaseDatabase.getReference("/schedules");
         fbGroupsRef = firebaseDatabase.getReference("/groups");
+    }
+
+    public String toolbarTitle()
+    {
+        return "";
+    }
+
+    @Override
+    public void setContentView(int resourceId)
+    {
+        super.setContentView(resourceId);
         Toolbar toolbar = findViewById(toolbarRes);
         setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setIcon(R.drawable.logo);
+        actionbar.setSubtitle(toolbarTitle());
     }
 
     @Override

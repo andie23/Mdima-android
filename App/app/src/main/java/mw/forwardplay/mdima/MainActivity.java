@@ -17,6 +17,12 @@ public class MainActivity extends SuperActivity {
         listViewOnClickListerner();
     }
 
+    @Override
+    public String toolbarTitle()
+    {
+        return "Main menu";
+    }
+
     public void listViewOnClickListerner()
     {
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
