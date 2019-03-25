@@ -11,10 +11,10 @@ public class MainActivity extends SuperActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainOptions = (ListView) findViewById(R.id.fixed_main_options);
         listViewOnClickListerner();
-        super.onCreate(savedInstanceState);
     }
 
     public void listViewOnClickListerner()

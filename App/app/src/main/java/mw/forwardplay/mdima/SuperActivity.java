@@ -1,23 +1,19 @@
 package mw.forwardplay.mdima;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
+import mw.forwardplay.mdima.helpers.FirebaseHelper;
+import mw.forwardplay.mdima.helpers.RecyclerHelper;
 
 public abstract class SuperActivity extends AppCompatActivity {
     private static final int toolbarRes = R.id.toolbar;
@@ -29,29 +25,20 @@ public abstract class SuperActivity extends AppCompatActivity {
     protected static DatabaseReference fbAreasRef;
     protected static DatabaseReference fbSchedulesRef;
     protected static DatabaseReference fbGroupsRef;
-    protected interface OnClickItemList{
-        void onClick(int position);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) findViewById(toolbarRes);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setIcon(R.drawable.logo);
         recyclerView = (RecyclerView) findViewById(R.id.defaultRecycler);
-        if(firebaseDatabase==null){
-            firebaseDatabase = FirebaseDatabase.getInstance();
-            firebaseDatabase.setPersistenceEnabled(true);
-        }
+        firebaseDatabase = FirebaseHelper.getDbInstance();
         fbRegionsRef = firebaseDatabase.getReference("/regions");
         fbLocationsRef = firebaseDatabase.getReference("/locations");
         fbAreasRef = firebaseDatabase.getReference("/areas");
         fbSchedulesRef = firebaseDatabase.getReference("/schedules");
         fbGroupsRef = firebaseDatabase.getReference("/groups");
-
+        Toolbar toolbar = findViewById(toolbarRes);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -61,18 +48,9 @@ public abstract class SuperActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    void setViewItemList(List<ListData> listData, OnClickItemList clickEvent)
+    void setViewItemList(List<ListData> listData, RecyclerHelper.OnClickItemList clickEvent)
     {
-        final OnClickItemList itemClick = clickEvent;
-        DefaultListAdapter adapter = new DefaultListAdapter(listData);
-        RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layout);
-        recyclerView.setAdapter(adapter);
-        adapter.setEventListerner(new DefaultListAdapter.ListEventListerner() {
-            @Override
-            public void onClick(int position) {
-                itemClick.onClick(position);
-            }
-        });
+         RecyclerHelper recyclerHelper = new RecyclerHelper(recyclerView);
+         recyclerHelper.setRecycler(this, listData, clickEvent);
     }
 }

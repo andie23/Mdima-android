@@ -20,6 +20,7 @@ import java.util.List;
 
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Areas;
+import mw.forwardplay.mdima.helpers.RecyclerHelper;
 
 public class AreaActivity extends SuperActivity {
     public final static String AREAS_BY_LOCATION="areas_by_location";
@@ -63,19 +64,24 @@ public class AreaActivity extends SuperActivity {
                                 : "No loadshedding schedule found")
                             .toString()
                     );
+                    areaData.params.put("location", area.getLocation());
                     areaListData.add(areaData);
                 }
 
                 if(!areaListData.isEmpty())
                 {
-                    setViewItemList(areaListData, new OnClickItemList() {
+                    setViewItemList(areaListData, new RecyclerHelper.OnClickItemList() {
                         @Override
                         public void onClick(int position) {
                             Intent areaViewIntent = new Intent(AreaActivity.this,
                                     AreaViewActivity.class);
 
-                            areaViewIntent.putExtra(AreaActivity.AREAS_BY_LOCATION,
+                            areaViewIntent.putExtra(AreaViewActivity.AREA_NAME,
                                     areaListData.get(position).getId());
+                            areaViewIntent.putExtra(AreaViewActivity.AREA_LOCATION,
+                                    areaListData.get(position).params.get("location")
+                                    );
+
                             startActivity(areaViewIntent);
                         }
                     });

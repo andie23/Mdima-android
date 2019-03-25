@@ -1,9 +1,13 @@
 package mw.forwardplay.mdima.adapters;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ListData{
     private String id;
     private String title;
     private String description;
+    public Map<String, String> params = new HashMap<>();
 
     public String getId() { return id; }
     public String getDescription() { return description; }

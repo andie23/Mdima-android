@@ -70,3 +70,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.0.4'
 }
 apply plugin: 'com.google.gms.google-services'
+
+dependencies {
+    implementation 'com.android.support:support-v4:27.+'
+}
+
+dependencies {
+    implementation 'com.android.support:support-v4:27.+'
+}
+
+dependencies {
+    implementation 'com.android.support:support-v4:27.+'
+}

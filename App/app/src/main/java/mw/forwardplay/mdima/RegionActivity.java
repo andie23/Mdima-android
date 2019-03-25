@@ -3,6 +3,7 @@ package mw.forwardplay.mdima;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -16,8 +17,9 @@ import java.util.List;
 
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Regions;
+import mw.forwardplay.mdima.helpers.RecyclerHelper;
 
-public class RegionActivity extends SuperActivity {
+public class RegionActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     @Override
@@ -25,10 +27,10 @@ public class RegionActivity extends SuperActivity {
         setContentView(R.layout.activity_region);
         progressBar = (ProgressBar) findViewById(R.id.spinner);
         progressBar.setVisibility(View.VISIBLE);
-        showRegions();
         super.onCreate(savedInstanceState);
+        //showRegions();
     }
-
+    /*
     private void showRegions()
     {
         fbRegionsRef.addValueEventListener(new ValueEventListener() {
@@ -51,7 +53,7 @@ public class RegionActivity extends SuperActivity {
 
                 if (regionsListData.size() >= 1)
                 {
-                    setViewItemList(regionsListData, new OnClickItemList() {
+                    setViewItemList(regionsListData, new RecyclerHelper.OnClickItemList() {
                         @Override
                         public void onClick(int position) {
                             Intent locationsIntent = new Intent(RegionActivity.this,
@@ -71,5 +73,5 @@ public class RegionActivity extends SuperActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 }

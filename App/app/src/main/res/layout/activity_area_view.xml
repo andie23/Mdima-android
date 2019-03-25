@@ -7,92 +7,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AreaViewActivity">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
-    <ScrollView
+
+    <include layout="@layout/toolbar"/>
+    <android.support.v7.widget.CardView
+        android:id="@+id/areaCardInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary"
+        >
         <LinearLayout
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
+            <include layout="@layout/progress_bar"/>
+            <TextView
+                android:id="@+id/areaTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                />
 
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:padding="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/locationName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/location_placeholder"
-                        android:textAppearance="@android:style/TextAppearance.Large"
-                        android:textColor="@color/cardLinkHeaderColor"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/areaNumberOfBlackouts"
-                        android:layout_marginTop="15dp"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="@string/number_of_blackouts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/areaAverageHours"
-                        android:layout_marginTop="5dp"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:text="@string/average_duration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <Button
-                        android:onClick="onShowAllSchedules"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/full_schedule"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/defaultButtonColor"
-                        android:textColor="@color/defaultButtonTextColor"
-                        />
-
-                    <Button
-                        android:layout_marginTop="10dp"
-                        android:text="@string/near_by_locations"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/defaultButtonColor"
-                        android:textColor="@color/defaultButtonTextColor"/>
-
-                    <Button
-                        android:layout_marginTop="10dp"
-                        android:text="@string/track_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/defaultButtonColor"
-                        android:textColor="@color/defaultButtonTextColor"
-                        />
-
-                    <Button
-                        android:layout_marginTop="10dp"
-                        android:text="@string/make_primary_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/defaultButtonColor"
-                        android:textColor="@color/defaultButtonTextColor"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+            <TextView
+                android:id="@+id/areaSubtitle"
+                android:text="Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                />
         </LinearLayout>
-    </ScrollView>
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

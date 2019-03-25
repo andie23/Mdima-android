@@ -18,6 +18,7 @@ import java.util.List;
 
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Locations;
+import mw.forwardplay.mdima.helpers.RecyclerHelper;
 
 public class LocationActivity extends SuperActivity {
     public final static String LOCATIONS_BY_REGION="locations_by_region";
@@ -66,7 +67,7 @@ public class LocationActivity extends SuperActivity {
 
                 if(!locationListData.isEmpty())
                 {
-                    setViewItemList(locationListData, new OnClickItemList() {
+                    setViewItemList(locationListData, new RecyclerHelper.OnClickItemList() {
                         @Override
                         public void onClick(int position) {
                             Intent areaIntent = new Intent(LocationActivity.this,
