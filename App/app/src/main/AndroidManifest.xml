@@ -9,23 +9,20 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AreaActivity"
-            android:label="Area Menu"
-            ></activity>
-        <activity android:name=".LocationActivity"
-            android:label="Location Menu"
-            />
-        <activity android:name=".RegionActivity"
-            android:label="Region Menu"
-            />
-        <activity android:name=".ScheduleListActivity"
-            android:label="All Schedules"
-            />
-        <activity android:name=".AreaViewActivity"
-            android:label="Area View"
-            />
-        <activity android:name=".MainActivity"
-            >
+        <activity
+            android:name=".DataListActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AreaActivity" />
+        <activity
+            android:name=".LocationActivity" />
+        <activity
+            android:name=".RegionActivity" />
+        <activity
+            android:name=".ScheduleListActivity"/>
+        <activity
+            android:name=".AreaViewActivity"/>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

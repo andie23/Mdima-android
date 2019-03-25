@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 
 import com.google.firebase.database.DatabaseReference;
@@ -51,9 +52,14 @@ public abstract class SuperActivity extends AppCompatActivity {
         super.setContentView(resourceId);
         Toolbar toolbar = findViewById(toolbarRes);
         setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setIcon(R.drawable.logo);
-        actionbar.setSubtitle(toolbarTitle());
+        try{
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setSubtitle(toolbarTitle());
+            actionbar.setIcon(R.drawable.logo);
+        }catch (Exception error){
+            Log.d("Toolbar Error", "You may have forgotten to include the toolbar layout" +
+                    " in this activity's layout file.... check that buddy");
+        }
     }
 
     @Override

@@ -32,7 +32,7 @@ public class MainActivity extends SuperActivity {
                {
                    case 0:
                       Intent regionIntent = new Intent(MainActivity.this,
-                              RegionActivity.class);
+                              DataListActivity.class);
                       startActivity(regionIntent);
                       break;
                    case 1:
