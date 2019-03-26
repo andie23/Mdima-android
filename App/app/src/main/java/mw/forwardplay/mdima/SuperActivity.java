@@ -18,6 +18,7 @@ import mw.forwardplay.mdima.helpers.FirebaseHelper;
 import mw.forwardplay.mdima.helpers.RecyclerHelper;
 
 public abstract class SuperActivity extends AppCompatActivity {
+    private String activityToolbarTitle;
     private static final int toolbarRes = R.id.toolbar;
     private static final int menuResource = R.menu.toolbar_default;
     protected RecyclerView recyclerView;
@@ -46,6 +47,11 @@ public abstract class SuperActivity extends AppCompatActivity {
         return "";
     }
 
+    public void setActivityToolbarTitle(String title)
+    {
+        activityToolbarTitle = title;
+    }
+
     @Override
     public void setContentView(int resourceId)
     {
@@ -54,7 +60,7 @@ public abstract class SuperActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         try{
             ActionBar actionbar = getSupportActionBar();
-            actionbar.setSubtitle(toolbarTitle());
+            actionbar.setSubtitle(activityToolbarTitle);
             actionbar.setIcon(R.drawable.logo);
         }catch (Exception error){
             Log.d("Toolbar Error", "You may have forgotten to include the toolbar layout" +
