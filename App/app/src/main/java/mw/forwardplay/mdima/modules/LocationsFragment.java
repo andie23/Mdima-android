@@ -3,16 +3,11 @@ package mw.forwardplay.mdima.modules;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
-import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Locations;
 
@@ -44,7 +39,7 @@ public class LocationsFragment extends SuperFragment {
     private void showLocations() {
         if(region==null) {return;}
         Query locationQ = locationsReference.child(region);
-        setListData((DatabaseReference) locationQ, new ListEntityData() {
+        setRecyclerListData((DatabaseReference) locationQ, new ListEntityData() {
             @Override
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 StringBuilder description = new StringBuilder();

@@ -1,23 +1,10 @@
 package mw.forwardplay.mdima.modules;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
-import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Regions;
 
@@ -37,7 +24,7 @@ public class RegionsFragment extends SuperFragment {
     }
 
     private void showRegions() {
-        setListData(regionReference, new ListEntityData() {
+        setRecyclerListData(regionReference, new ListEntityData() {
             @Override
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                  StringBuilder description = new StringBuilder();

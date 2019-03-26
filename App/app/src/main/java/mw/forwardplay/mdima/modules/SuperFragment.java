@@ -58,7 +58,7 @@ public class SuperFragment extends Fragment {
         recyclerHelper.setRecycler(activity, listData, clickEvent);
     }
 
-    protected void setListData(DatabaseReference dbRef, final ListEntityData listEntityData) {
+    protected void setRecyclerListData(DatabaseReference dbRef, final ListEntityData listEntityData) {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

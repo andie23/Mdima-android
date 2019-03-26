@@ -3,16 +3,11 @@ package mw.forwardplay.mdima.modules;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
-import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Schedules;
 
@@ -42,7 +37,7 @@ public class SchedulesFragment extends SuperFragment {
 
     void showSchedules(){
         Query groupQ =  schedulesReference.child(group);
-        setListData((DatabaseReference)groupQ, new ListEntityData() {
+        setRecyclerListData((DatabaseReference)groupQ, new ListEntityData() {
             @Override
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 Schedules schedule = snapshot.getValue(Schedules.class);
