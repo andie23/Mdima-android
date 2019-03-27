@@ -15,6 +15,7 @@ import java.util.List;
 
 import mw.forwardplay.mdima.DataListActivity;
 import mw.forwardplay.mdima.R;
+import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Locations;
 
@@ -70,6 +71,14 @@ public class LocationsFragment extends SuperFragment {
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 StringBuilder description = new StringBuilder();
                 Locations location = snapshot.getValue(Locations.class);
+                if(location.getAreas()==null || location.getAreas().isEmpty())
+                {
+                    listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
+                            DefaultListAdapter.SELECT_ICON_INVISIBLE);
+                }else{
+                    listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
+                            DefaultListAdapter.SELECT_ICON_VISIBLE);
+                }
                 listData.params.put("area_num",
                    location.getAreas()!= null ? String.valueOf(location.getAreas().size()) : "0"
                 );
@@ -98,19 +107,21 @@ public class LocationsFragment extends SuperFragment {
             @Override
             public void onClick(int index, List<ListData> listData) {
                 ListData data = listData.get(index);
-                String location = data.getId();
-                AreasFragment areasFragment = new AreasFragment();
-                areasFragment.setLocation(location);
-                areasFragment.setTitle(location);
-                areasFragment.setSubtitle(
-                        new StringBuilder()
-                                .append(region).append(" | ")
-                                .append(data.params.get("area_num")).append(" area(s) found")
-                                .append("\n")
-                                .append(data.params.get("status"))
-                                .toString()
-                );
-                replaceFragment(areasFragment, location);
+                if(data.getId()!=null) {
+                    String location = data.getId();
+                    AreasFragment areasFragment = new AreasFragment();
+                    areasFragment.setLocation(location);
+                    areasFragment.setTitle(location);
+                    areasFragment.setSubtitle(
+                            new StringBuilder()
+                                    .append(region).append(" | ")
+                                    .append(data.params.get("area_num")).append(" area(s) found")
+                                    .append("\n")
+                                    .append(data.params.get("status"))
+                                    .toString()
+                    );
+                    replaceFragment(areasFragment, location);
+                }
             }
         });
     }

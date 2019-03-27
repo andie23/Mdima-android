@@ -71,6 +71,9 @@ public class AreasFragment extends SuperFragment {
                 if(groups==null || groups.isEmpty() ){
                     listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
                             DefaultListAdapter.SELECT_ICON_INVISIBLE);
+                }else{
+                    listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
+                            DefaultListAdapter.SELECT_ICON_VISIBLE);
                 }
                 listData.params.put("region", area.getRegion());
                 listData.setId(groups!=null ? groups.get(0) : "");
