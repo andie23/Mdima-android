@@ -3,6 +3,7 @@ package mw.forwardplay.mdima.modules;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +46,7 @@ public class AreasFragment extends SuperFragment {
             @Override
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 Areas area = snapshot.getValue(Areas.class);
-                listData.setId(area.getArea());
+                listData.setId(area.getGroups()!=null ? area.getGroups().get(0) : "");
                 listData.setTitle(area.getArea());
                 listData.setDescription(
                     new StringBuilder()
@@ -64,7 +65,14 @@ public class AreasFragment extends SuperFragment {
 
             @Override
             public void onClick(int index, List<ListData> listData) {
-
+                String group = listData.get(index).getId();
+                if(!group.isEmpty())
+                {
+                    SchedulesFragment schedulesFragment = new SchedulesFragment();
+                    schedulesFragment.setGroup(group);
+                    replaceFragment(schedulesFragment);
+                }
+                Toast.makeText(activity, "No Load-shedding schedule found", Toast.LENGTH_SHORT);
             }
         });
     }
