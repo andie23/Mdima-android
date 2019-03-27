@@ -20,8 +20,8 @@ public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.
     public static final String SELECT_ICON_VISIBLE = "1";
     public static final String SELECT_ICON_INVISIBLE = "0";
 
-    private ListEventListerner eventListerner;
-    private List<ListData> listData;
+    protected ListEventListerner eventListerner;
+    protected List<ListData> listData;
     public DefaultListAdapter(List<ListData> listData) {
         this.listData = listData;
     }

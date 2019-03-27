@@ -1,12 +1,10 @@
 package mw.forwardplay.mdima.modules;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mw.forwardplay.mdima.DataListActivity;
-import mw.forwardplay.mdima.MainActivity;
 import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.helpers.FirebaseHelper;
@@ -69,7 +66,7 @@ public class SuperFragment extends Fragment {
     void setViewItemList(List<ListData> listData, RecyclerHelper.OnClickItemList clickEvent)
     {
         recyclerHelper = new RecyclerHelper(recyclerView);
-        recyclerHelper.setRecycler(activity, listData, clickEvent);
+        recyclerHelper.setDefaultRecycler(activity, listData, clickEvent);
     }
 
     public void replaceFragment(Fragment fragment, String fragmentTitle)

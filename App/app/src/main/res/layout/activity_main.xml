@@ -9,11 +9,9 @@
 
     <include layout="@layout/toolbar" />
 
-    <ListView
-        android:id="@+id/fixed_main_options"
-        android:padding="16dp"
-        android:entries="@array/main_options"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/staticMenuListRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
