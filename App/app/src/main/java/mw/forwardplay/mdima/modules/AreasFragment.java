@@ -67,8 +67,13 @@ public class AreasFragment extends SuperFragment {
             @Override
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 Areas area = snapshot.getValue(Areas.class);
+                List<String> groups = area.getGroups();
+                if(groups==null || groups.isEmpty() ){
+                    listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
+                            DefaultListAdapter.SELECT_ICON_INVISIBLE);
+                }
                 listData.params.put("region", area.getRegion());
-                listData.setId(area.getGroups()!=null ? area.getGroups().get(0) : "");
+                listData.setId(groups!=null ? groups.get(0) : "");
                 listData.setTitle(area.getArea());
                 listData.setDescription(
                     area.getGroups()!= null ? "Area has load-shedding schedule(s)" :
