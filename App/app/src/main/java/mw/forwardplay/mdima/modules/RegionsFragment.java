@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.List;
+
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Regions;
 
@@ -41,8 +43,11 @@ public class RegionsFragment extends SuperFragment {
             }
 
             @Override
-            public void onClick(int index) {
-
+            public void onClick(int index, List<ListData> listData) {
+                String region = listData.get(index).getId();
+                LocationsFragment locationsFragment = new LocationsFragment();
+                locationsFragment.setRegion(region);
+                replaceFragment(locationsFragment);
             }
         });
     }

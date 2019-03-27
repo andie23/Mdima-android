@@ -10,17 +10,11 @@ import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 
 public class RecyclerHelper {
-    public interface OnClickItemList{
-        void onClick(int index);
-    }
-
+    public interface OnClickItemList{ void onClick(int index); }
     private RecyclerView recyclerView;
-    private DefaultListAdapter adapter;
+    public DefaultListAdapter adapter;
 
-    public RecyclerHelper(RecyclerView recyclerView)
-    {
-        this.recyclerView = recyclerView;
-    }
+    public RecyclerHelper(RecyclerView recyclerView) { this.recyclerView = recyclerView; }
 
     public void setRecycler(Context context, List<ListData> listData,
                             OnClickItemList onClickItemList)

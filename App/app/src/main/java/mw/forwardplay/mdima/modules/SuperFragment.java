@@ -3,6 +3,8 @@ package mw.forwardplay.mdima.modules;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -28,10 +30,11 @@ public class SuperFragment extends Fragment {
     protected RecyclerView recyclerView;
     protected AppCompatActivity activity;
     protected FirebaseDatabase firebaseDatabase;
+    protected RecyclerHelper recyclerHelper;
 
     interface ListEntityData {
         ListData onSetListData(DataSnapshot snapshot, ListData listData);
-        void onClick(int index);
+        void onClick(int index, List<ListData> listData);
     }
 
     @Override
@@ -54,15 +57,23 @@ public class SuperFragment extends Fragment {
 
     void setViewItemList(List<ListData> listData, RecyclerHelper.OnClickItemList clickEvent)
     {
-        RecyclerHelper recyclerHelper = new RecyclerHelper(recyclerView);
+        recyclerHelper = new RecyclerHelper(recyclerView);
         recyclerHelper.setRecycler(activity, listData, clickEvent);
+    }
+
+    public void replaceFragment(Fragment fragment)
+    {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
     }
 
     protected void setRecyclerListData(DatabaseReference dbRef, final ListEntityData listEntityData) {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<ListData> entityListData = new ArrayList<>();
+                final List<ListData> entityListData = new ArrayList<>();
                 for(DataSnapshot snapshot: dataSnapshot.getChildren())
                 {
                     entityListData.add(listEntityData.onSetListData(snapshot, new ListData()));
@@ -71,7 +82,7 @@ public class SuperFragment extends Fragment {
                     @Override
                     public void onClick(int index)
                     {
-                        listEntityData.onClick(index);
+                        listEntityData.onClick(index, entityListData);
                     }
                 });
             }

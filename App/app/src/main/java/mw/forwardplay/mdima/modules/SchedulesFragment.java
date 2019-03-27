@@ -8,6 +8,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
+import java.util.List;
+
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Schedules;
 
@@ -60,7 +62,7 @@ public class SchedulesFragment extends SuperFragment {
             }
 
             @Override
-            public void onClick(int index) {
+            public void onClick(int index, List<ListData> listData) {
 
             }
         });

@@ -11,12 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import mw.forwardplay.mdima.modules.RegionsFragment;
+import mw.forwardplay.mdima.modules.SuperFragment;
 
 public class DataListActivity extends SuperActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_list);
+        SuperFragment superFragment = (SuperFragment) getSupportFragmentManager().findFragmentById(
+                R.id.fragment_container);
+
+        superFragment.replaceFragment(new RegionsFragment());
+
     }
 
 }
