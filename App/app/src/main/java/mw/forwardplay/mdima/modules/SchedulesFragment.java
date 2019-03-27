@@ -20,7 +20,7 @@ public class SchedulesFragment extends SuperFragment {
     private DatabaseReference schedulesReference;
     private String group;
 
-    public SchedulesFragment() {
+    public void SchedulesFragment() {
         // Required empty public constructor
     }
 
