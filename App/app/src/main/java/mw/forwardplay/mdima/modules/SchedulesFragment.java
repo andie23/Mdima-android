@@ -33,7 +33,6 @@ public class SchedulesFragment extends SuperFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         schedulesReference = firebaseDatabase.getReference("schedules");
-        setGroup("Area Group A - 20 to 26 Aug 2019");
         showSchedules();
     }
 
