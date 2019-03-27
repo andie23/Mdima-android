@@ -19,15 +19,35 @@ import mw.forwardplay.mdima.entities.Areas;
  */
 public class AreasFragment extends SuperFragment {
     private String location;
+    private String title;
+    private String subtitle;
+
     protected DatabaseReference locationReference;
 
     public AreasFragment() {
         // Required empty public constructor
     }
 
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setSubtitle(String subtitle)
+    {
+        this.subtitle = subtitle;
+    }
+
     public void setLocation(String location)
     {
         this.location = location;
+    }
+
+    @Override
+    public  void setInformationBarText()
+    {
+        listActivity.setTitle(title);
+        listActivity.setSubtitle(subtitle);
     }
 
     @Override
@@ -46,34 +66,44 @@ public class AreasFragment extends SuperFragment {
             @Override
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 Areas area = snapshot.getValue(Areas.class);
+                listData.params.put("region", area.getRegion());
                 listData.setId(area.getGroups()!=null ? area.getGroups().get(0) : "");
                 listData.setTitle(area.getArea());
                 listData.setDescription(
-                    new StringBuilder()
-                        .append(area.getLocation())
-                        .append("\n")
-                        .append(area.getRegion())
-                        .append("\n")
-                        .append(
-                            area.getGroups()!= null ? "Area has load-shedding schedule(s)" :
-                                    "no load-shedding schedules found"
-                        )
-                        .toString()
+                    area.getGroups()!= null ? "Area has load-shedding schedule(s)" :
+                    "no load-shedding schedules found"
                 );
                 return listData;
             }
 
             @Override
             public void onClick(int index, List<ListData> listData) {
-                String group = listData.get(index).getId();
+                ListData data = listData.get(index);
+                String group = data.getId();
                 if(!group.isEmpty())
                 {
                     SchedulesFragment schedulesFragment = new SchedulesFragment();
                     schedulesFragment.setGroup(group);
+                    schedulesFragment.setTitle(data.getTitle() + " schedule");
+                    schedulesFragment.setSubtitle(
+                            new StringBuilder()
+                                    .append(location).append(" | ")
+                                    .append(data.params.get("region"))
+                                    .toString()
+                    );
                     replaceFragment(schedulesFragment, group);
                 }
-                Toast.makeText(activity, "No Load-shedding schedule found", Toast.LENGTH_SHORT);
+                Toast.makeText(listActivity, "No Load-shedding schedule found",
+                        Toast.LENGTH_SHORT);
             }
         });
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        showAreas();
+        setInformationBarText();
     }
 }

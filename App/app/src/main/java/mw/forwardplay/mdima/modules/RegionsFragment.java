@@ -7,12 +7,12 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
+import mw.forwardplay.mdima.DataListActivity;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Regions;
 
 public class RegionsFragment extends SuperFragment {
     private DatabaseReference regionReference;
-
     public void RegionsFragment()
     {
 
@@ -25,6 +25,13 @@ public class RegionsFragment extends SuperFragment {
         showRegions();
     }
 
+    @Override
+    protected void setInformationBarText()
+    {
+        listActivity.setTitle("Regions in Malawi");
+        listActivity.setSubtitle("Select region:");
+    }
+
     private void showRegions() {
         setRecyclerListData(regionReference, new ListEntityData() {
             @Override
@@ -33,6 +40,12 @@ public class RegionsFragment extends SuperFragment {
                  Regions region = snapshot.getValue(Regions.class);
                  listData.setId(region.getRegion());
                  listData.setTitle(region.getRegion());
+                 listData.params.put("location_num",
+                         String.valueOf(region.getLocations().size()));
+                 listData.params.put("status",
+                         region.getGroups()!=null && region.getGroups().size() >= 1 ?
+                                 "Some locations have a schedule" : "No loadshedding schedules"
+                         );
                  listData.setDescription(
                          description
                              .append("Region has")
@@ -44,9 +57,18 @@ public class RegionsFragment extends SuperFragment {
 
             @Override
             public void onClick(int index, List<ListData> listData) {
-                String region = listData.get(index).getId();
+                ListData data = listData.get(index);
+                String region = data.getId();
                 LocationsFragment locationsFragment = new LocationsFragment();
                 locationsFragment.setRegion(region);
+                locationsFragment.setTitle(region);
+                locationsFragment.setSubtitle(
+                      new StringBuilder()
+                      .append( data.params.get("location_num")  + " Location(s) found")
+                      .append("\n")
+                      .append(data.params.get("status"))
+                      .toString()
+                    );
                 replaceFragment(locationsFragment, region);
             }
         });
@@ -57,5 +79,6 @@ public class RegionsFragment extends SuperFragment {
     {
         super.onResume();
         showRegions();
+        setInformationBarText();
     }
 }

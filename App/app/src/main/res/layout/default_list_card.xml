@@ -12,7 +12,8 @@
 
         <TextView
             android:id="@+id/cardItemTitle"
-            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAppearance="@android:style/TextAppearance.Medium"
             android:text="Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -20,7 +21,6 @@
         <TextView
             android:id="@+id/cardItemDescription"
             android:text="No description"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import mw.forwardplay.mdima.DataListActivity;
 import mw.forwardplay.mdima.MainActivity;
 import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
@@ -29,6 +30,7 @@ import mw.forwardplay.mdima.helpers.FirebaseHelper;
 import mw.forwardplay.mdima.helpers.RecyclerHelper;
 
 public class SuperFragment extends Fragment {
+    protected DataListActivity listActivity;
     protected RecyclerView recyclerView;
     protected AppCompatActivity activity;
     protected FirebaseDatabase firebaseDatabase;
@@ -39,12 +41,19 @@ public class SuperFragment extends Fragment {
         void onClick(int index, List<ListData> listData);
     }
 
+    protected void setInformationBarText()
+    {
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceBundle)
     {
         super.onCreate(savedInstanceBundle);
+        listActivity = (DataListActivity) getActivity();
         activity = (AppCompatActivity) getActivity();
         firebaseDatabase = FirebaseHelper.getDbInstance();
+        setInformationBarText();
     }
 
     @Override

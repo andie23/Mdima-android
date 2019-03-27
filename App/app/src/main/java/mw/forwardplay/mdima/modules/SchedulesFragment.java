@@ -17,6 +17,7 @@ import mw.forwardplay.mdima.entities.Schedules;
  * A simple {@link Fragment} subclass.
  */
 public class SchedulesFragment extends SuperFragment {
+    private String title, subtitle;
     private DatabaseReference schedulesReference;
     private String group;
 
@@ -24,9 +25,26 @@ public class SchedulesFragment extends SuperFragment {
         // Required empty public constructor
     }
 
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setSubtitle(String subtitle)
+    {
+        this.subtitle = subtitle;
+    }
+
     public void setGroup(String group)
     {
         this.group = group;
+    }
+
+    @Override
+    protected  void setInformationBarText()
+    {
+        listActivity.setTitle(title);
+        listActivity.setSubtitle(subtitle);
     }
 
     @Override
@@ -72,5 +90,6 @@ public class SchedulesFragment extends SuperFragment {
     {
         super.onResume();
         showSchedules();
+        setInformationBarText();
     }
 }

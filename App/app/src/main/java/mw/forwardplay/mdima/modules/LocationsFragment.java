@@ -13,6 +13,7 @@ import com.google.firebase.database.Query;
 
 import java.util.List;
 
+import mw.forwardplay.mdima.DataListActivity;
 import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Locations;
@@ -22,15 +23,35 @@ import mw.forwardplay.mdima.entities.Locations;
  */
 public class LocationsFragment extends SuperFragment {
     private String region;
+    private String title;
+    private String subtitle;
+
     protected DatabaseReference locationsReference;
 
     public LocationsFragment() {
         // Required empty public constructor
     }
 
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setSubtitle(String subtitle)
+    {
+        this.subtitle = subtitle;
+    }
+
     public void setRegion(String region)
     {
         this.region = region;
+    }
+
+    @Override
+    public void setInformationBarText()
+    {
+        listActivity.setTitle(title);
+        listActivity.setSubtitle(subtitle);
     }
 
     @Override
@@ -49,31 +70,46 @@ public class LocationsFragment extends SuperFragment {
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 StringBuilder description = new StringBuilder();
                 Locations location = snapshot.getValue(Locations.class);
+                listData.params.put("area_num",
+                   location.getAreas()!= null ? String.valueOf(location.getAreas().size()) : "0"
+                );
+                listData.params.put("status",
+                        location.getGroups()!=null && location.getGroups().size()>=1 ?
+                                "Some areas have a schedule" : "No schedules"
+                        );
                 listData.setId(location.getLocation());
                 listData.setTitle(location.getLocation());
                 listData.setDescription(
-                        description.append(location.getRegion())
-                                .append("\n")
-                                .append("Location has")
-                                .append(" ")
-                                .append(location.getAreas()!=null ?
+                        description.append("Location has")
+                                   .append(" ")
+                                   .append(location.getAreas()!=null ?
                                         location.getAreas().size() : 0)
-                                .append(" ")
-                                .append("area(s)")
-                                .append("\n")
-                                .append(location.getGroups()!=null &&
-                                        !location.getGroups().isEmpty() ? "Load-shedding schedule" +
-                                        " found in some areas" : "No load-shedding schedule")
-                                .toString()
+                                    .append(" ")
+                                    .append("area(s)")
+                                    .append("\n")
+                                    .append(location.getGroups()!=null &&
+                                            !location.getGroups().isEmpty() ? "Load-shedding schedule" +
+                                            " found in some areas" : "No load-shedding schedule")
+                                    .toString()
                 );
                 return listData;
             }
 
             @Override
             public void onClick(int index, List<ListData> listData) {
-                String location = listData.get(index).getId();
+                ListData data = listData.get(index);
+                String location = data.getId();
                 AreasFragment areasFragment = new AreasFragment();
                 areasFragment.setLocation(location);
+                areasFragment.setTitle(location);
+                areasFragment.setSubtitle(
+                        new StringBuilder()
+                                .append(region).append(" | ")
+                                .append(data.params.get("area_num")).append(" area(s) found")
+                                .append("\n")
+                                .append(data.params.get("status"))
+                                .toString()
+                );
                 replaceFragment(areasFragment, location);
             }
         });
@@ -84,6 +120,7 @@ public class LocationsFragment extends SuperFragment {
     {
         super.onResume();
         showLocations();
+        setInformationBarText();
     }
 
 
