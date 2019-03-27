@@ -1,5 +1,6 @@
 package mw.forwardplay.mdima.modules;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import mw.forwardplay.mdima.MainActivity;
 import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.helpers.FirebaseHelper;
@@ -61,15 +63,21 @@ public class SuperFragment extends Fragment {
         recyclerHelper.setRecycler(activity, listData, clickEvent);
     }
 
-    public void replaceFragment(Fragment fragment)
+    public void replaceFragment(Fragment fragment, String fragmentTitle)
     {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(fragmentTitle);
         fragmentTransaction.commit();
     }
 
-    protected void setRecyclerListData(DatabaseReference dbRef, final ListEntityData listEntityData) {
+    public void replaceFragment(Fragment fragment)
+    {
+        replaceFragment(fragment, null);
+    }
+
+    protected void setRecyclerListData(DatabaseReference dbRef, final ListEntityData listEntityData){
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

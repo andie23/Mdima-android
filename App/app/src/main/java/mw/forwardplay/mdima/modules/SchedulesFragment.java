@@ -66,4 +66,11 @@ public class SchedulesFragment extends SuperFragment {
             }
         });
     }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        showSchedules();
+    }
 }

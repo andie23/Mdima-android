@@ -47,8 +47,15 @@ public class RegionsFragment extends SuperFragment {
                 String region = listData.get(index).getId();
                 LocationsFragment locationsFragment = new LocationsFragment();
                 locationsFragment.setRegion(region);
-                replaceFragment(locationsFragment);
+                replaceFragment(locationsFragment, region);
             }
         });
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        showRegions();
     }
 }

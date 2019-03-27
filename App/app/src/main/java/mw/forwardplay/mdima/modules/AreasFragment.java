@@ -70,7 +70,7 @@ public class AreasFragment extends SuperFragment {
                 {
                     SchedulesFragment schedulesFragment = new SchedulesFragment();
                     schedulesFragment.setGroup(group);
-                    replaceFragment(schedulesFragment);
+                    replaceFragment(schedulesFragment, group);
                 }
                 Toast.makeText(activity, "No Load-shedding schedule found", Toast.LENGTH_SHORT);
             }
