@@ -13,14 +13,6 @@
             android:name=".DataListActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".AreaActivity" />
-        <activity
-            android:name=".LocationActivity" />
-        <activity
-            android:name=".RegionActivity" />
-        <activity
-            android:name=".ScheduleListActivity"/>
-        <activity
             android:name=".AreaViewActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
