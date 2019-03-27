@@ -11,6 +11,7 @@ import com.google.firebase.database.Query;
 
 import java.util.List;
 
+import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Areas;
 

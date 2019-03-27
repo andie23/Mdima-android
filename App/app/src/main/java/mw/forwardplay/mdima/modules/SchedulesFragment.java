@@ -10,6 +10,7 @@ import com.google.firebase.database.Query;
 
 import java.util.List;
 
+import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Schedules;
 
@@ -60,6 +61,8 @@ public class SchedulesFragment extends SuperFragment {
             @Override
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 Schedules schedule = snapshot.getValue(Schedules.class);
+                listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
+                        DefaultListAdapter.SELECT_ICON_INVISIBLE);
                 listData.setId(schedule.getName());
                 listData.setTitle(schedule.getName());
                 listData.setDescription(

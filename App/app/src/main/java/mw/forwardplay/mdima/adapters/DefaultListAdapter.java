@@ -3,6 +3,7 @@ package mw.forwardplay.mdima.adapters;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,8 @@ import mw.forwardplay.mdima.R;
 
 public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.ViewHolder> {
     public static final String SET_SELECT_ICON = "set_select_icon";
-    public static final int SELECT_ICON_VISIBLE = 1;
-    public static final int SELECT_ICON_INVISIBLE = 0;
+    public static final String SELECT_ICON_VISIBLE = "1";
+    public static final String SELECT_ICON_INVISIBLE = "0";
 
     private ListEventListerner eventListerner;
     private List<ListData> listData;
@@ -68,11 +69,11 @@ public class DefaultListAdapter extends RecyclerView.Adapter<DefaultListAdapter.
         descriptionText.setText(dataSet.getDescription());
 
         if(dataSet.params.containsKey(SET_SELECT_ICON) &&
-                Integer.valueOf(dataSet.params.get(SET_SELECT_ICON)) == SELECT_ICON_INVISIBLE)
+                dataSet.params.get(SET_SELECT_ICON).equals(SELECT_ICON_INVISIBLE))
         {
-            selectIcon.setVisibility(selectIcon.INVISIBLE);
+            selectIcon.setVisibility(cardView.GONE);
         }else{
-            selectIcon.setVisibility(selectIcon.VISIBLE);
+            selectIcon.setVisibility(cardView.VISIBLE);
         }
 
         if(eventListerner!=null)
