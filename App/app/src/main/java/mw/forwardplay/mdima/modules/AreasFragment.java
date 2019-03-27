@@ -34,7 +34,6 @@ public class AreasFragment extends SuperFragment {
     {
         super.onCreate(savedInstanceState);
         locationReference = firebaseDatabase.getReference("areas");
-        setLocation("Kwacha");
         showAreas();
     }
 
