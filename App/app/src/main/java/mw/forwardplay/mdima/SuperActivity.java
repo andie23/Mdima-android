@@ -33,23 +33,6 @@ public abstract class SuperActivity extends AppCompatActivity {
     protected  void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        recyclerView = (RecyclerView) findViewById(R.id.defaultRecycler);
-        firebaseDatabase = FirebaseHelper.getDbInstance();
-        fbRegionsRef = firebaseDatabase.getReference("/regions");
-        fbLocationsRef = firebaseDatabase.getReference("/locations");
-        fbAreasRef = firebaseDatabase.getReference("/areas");
-        fbSchedulesRef = firebaseDatabase.getReference("/schedules");
-        fbGroupsRef = firebaseDatabase.getReference("/groups");
-    }
-
-    public String toolbarTitle()
-    {
-        return "";
-    }
-
-    public void setActivityToolbarTitle(String title)
-    {
-        activityToolbarTitle = title;
     }
 
     @Override
@@ -60,7 +43,6 @@ public abstract class SuperActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         try{
             ActionBar actionbar = getSupportActionBar();
-            actionbar.setSubtitle(activityToolbarTitle);
             actionbar.setIcon(R.drawable.logo);
         }catch (Exception error){
             Log.d("Toolbar Error", "You may have forgotten to include the toolbar layout" +
@@ -73,11 +55,5 @@ public abstract class SuperActivity extends AppCompatActivity {
     {
         getMenuInflater().inflate(menuResource, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    void setViewItemList(List<ListData> listData, RecyclerHelper.OnClickItemList clickEvent)
-    {
-         RecyclerHelper recyclerHelper = new RecyclerHelper(recyclerView);
-         recyclerHelper.setRecycler(this, listData, clickEvent);
     }
 }
