@@ -71,7 +71,10 @@ public class LocationsFragment extends SuperFragment {
 
             @Override
             public void onClick(int index, List<ListData> listData) {
-
+                String location = listData.get(index).getId();
+                AreasFragment areasFragment = new AreasFragment();
+                areasFragment.setLocation(location);
+                replaceFragment(areasFragment);
             }
         });
     }
