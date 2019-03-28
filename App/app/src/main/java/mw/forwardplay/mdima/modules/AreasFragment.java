@@ -71,6 +71,7 @@ public class AreasFragment extends SuperFragment {
                 Areas area = snapshot.getValue(Areas.class);
                 List<String> groups = area.getGroups();
                 listData.params.put("region", area.getRegion());
+                listData.params.put("location", area.getLocation());
                 listData.setId(area.getArea());
                 listData.setTitle(area.getArea());
                 listData.setDescription(
@@ -82,9 +83,11 @@ public class AreasFragment extends SuperFragment {
 
             @Override
             public void onClick(int index, List<ListData> listData) {
-                String area = listData.get(index).getId();
+                ListData data = listData.get(index);
+                String area = data.getId();
                 Intent areaViewIntent = new Intent(listActivity, AreaViewActivity.class);
                 areaViewIntent.putExtra(AreaViewActivity.AREA_NAME, area);
+                areaViewIntent.putExtra(AreaViewActivity.AREA_LOCATION, data.params.get("location"));
                 startActivity(areaViewIntent);
             }
         });

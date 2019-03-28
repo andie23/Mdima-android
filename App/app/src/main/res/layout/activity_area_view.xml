@@ -7,8 +7,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AreaViewActivity">
-
     <include layout="@layout/toolbar"/>
 
-
+    <fragment
+        android:id="@+id/informationBar"
+        android:name="mw.forwardplay.mdima.modules.InformationBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
