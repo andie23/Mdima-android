@@ -7,7 +7,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
-import mw.forwardplay.mdima.DataListActivity;
+import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Regions;
 
@@ -26,10 +26,12 @@ public class RegionsFragment extends SuperFragment {
     }
 
     @Override
-    protected void setInformationBarText()
+    protected void setInformationBar()
     {
-        listActivity.setTitle("Regions in Malawi");
-        listActivity.setSubtitle("Select region:");
+        listActivity.setInformationBar(
+            "Regions in Malawi", "Select a region:",
+            R.drawable.map
+        );
     }
 
     private void showRegions() {
@@ -79,6 +81,6 @@ public class RegionsFragment extends SuperFragment {
     {
         super.onResume();
         showRegions();
-        setInformationBarText();
+        setInformationBar();
     }
 }

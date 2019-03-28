@@ -1,41 +1,36 @@
 package mw.forwardplay.mdima;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
 
+import mw.forwardplay.mdima.modules.InformationBarFragment;
 import mw.forwardplay.mdima.modules.RegionsFragment;
 import mw.forwardplay.mdima.modules.SuperFragment;
 
 public class DataListActivity extends SuperActivity {
-    private TextView tvTitle, tvSubtitle;
+    private InformationBarFragment informationBarFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_list);
-        tvTitle = findViewById(R.id.fragmentTitle);
-        tvSubtitle = findViewById(R.id.fragmentSubtitle);
-        setDefaultFragment();
+        setInformationBarFragment();
+        loadDefaultFragment();
     }
 
-    public void setTitle(String title)
+    public void setInformationBar(String title, String subtitle, int icon)
     {
-        tvTitle.setText(title);
+        informationBarFragment.setTitle(title);
+        informationBarFragment.setSubtitle(subtitle);
+        informationBarFragment.setIcon(icon);
+        informationBarFragment.setViews();
     }
 
-    public void setSubtitle(String subtitle)
+    void setInformationBarFragment()
     {
-        tvSubtitle.setText(subtitle);
+        informationBarFragment = (InformationBarFragment)
+                getSupportFragmentManager().findFragmentById(R.id.informationBar);
     }
 
-    void setDefaultFragment()
+    void loadDefaultFragment()
     {
         SuperFragment superFragment = (SuperFragment) getSupportFragmentManager().findFragmentById(
                 R.id.fragment_container);

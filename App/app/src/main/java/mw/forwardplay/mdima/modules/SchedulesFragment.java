@@ -10,6 +10,7 @@ import com.google.firebase.database.Query;
 
 import java.util.List;
 
+import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Schedules;
@@ -42,10 +43,11 @@ public class SchedulesFragment extends SuperFragment {
     }
 
     @Override
-    protected  void setInformationBarText()
+    protected  void setInformationBar()
     {
-        listActivity.setTitle(title);
-        listActivity.setSubtitle(subtitle);
+        listActivity.setInformationBar(
+                title, subtitle, R.drawable.schedule
+        );
     }
 
     @Override
@@ -93,6 +95,6 @@ public class SchedulesFragment extends SuperFragment {
     {
         super.onResume();
         showSchedules();
-        setInformationBarText();
+        setInformationBar();
     }
 }

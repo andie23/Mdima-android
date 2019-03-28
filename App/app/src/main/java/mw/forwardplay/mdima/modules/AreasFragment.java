@@ -4,7 +4,6 @@ package mw.forwardplay.mdima.modules;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -13,7 +12,7 @@ import com.google.firebase.database.Query;
 import java.util.List;
 
 import mw.forwardplay.mdima.AreaViewActivity;
-import mw.forwardplay.mdima.adapters.DefaultListAdapter;
+import mw.forwardplay.mdima.R;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Areas;
 
@@ -47,10 +46,11 @@ public class AreasFragment extends SuperFragment {
     }
 
     @Override
-    public  void setInformationBarText()
+    public  void setInformationBar()
     {
-        listActivity.setTitle(title);
-        listActivity.setSubtitle(subtitle);
+        listActivity.setInformationBar(
+                title, subtitle, R.drawable.map
+        );
     }
 
     @Override
@@ -95,6 +95,6 @@ public class AreasFragment extends SuperFragment {
     {
         super.onResume();
         showAreas();
-        setInformationBarText();
+        setInformationBar();
     }
 }

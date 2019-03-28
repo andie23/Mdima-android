@@ -29,14 +29,6 @@ public class AreaViewActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_view);
-        Intent areaViewIntent = getIntent();
-        area = areaViewIntent.getStringExtra(AREA_NAME);
-        location = areaViewIntent.getStringExtra(AREA_LOCATION);
-        title = (TextView) findViewById(R.id.areaTitle);
-        subtitle = (TextView) findViewById(R.id.areaSubtitle);
-        progressBar = (ProgressBar) findViewById(R.id.spinner);
-        progressBar.setVisibility(View.VISIBLE);
-        showArea();
     }
 
     private void showArea() {

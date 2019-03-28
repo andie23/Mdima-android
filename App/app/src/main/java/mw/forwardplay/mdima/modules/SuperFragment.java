@@ -38,7 +38,7 @@ public class SuperFragment extends Fragment {
         void onClick(int index, List<ListData> listData);
     }
 
-    protected void setInformationBarText()
+    protected void setInformationBar()
     {
 
     }
@@ -50,7 +50,7 @@ public class SuperFragment extends Fragment {
         listActivity = (DataListActivity) getActivity();
         activity = (AppCompatActivity) getActivity();
         firebaseDatabase = FirebaseHelper.getDbInstance();
-        setInformationBarText();
+        setInformationBar();
     }
 
     @Override
