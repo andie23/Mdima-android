@@ -1,6 +1,7 @@
 package mw.forwardplay.mdima.modules;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import com.google.firebase.database.Query;
 
 import java.util.List;
 
+import mw.forwardplay.mdima.AreaViewActivity;
 import mw.forwardplay.mdima.adapters.DefaultListAdapter;
 import mw.forwardplay.mdima.adapters.ListData;
 import mw.forwardplay.mdima.entities.Areas;
@@ -68,15 +70,8 @@ public class AreasFragment extends SuperFragment {
             public ListData onSetListData(DataSnapshot snapshot, ListData listData) {
                 Areas area = snapshot.getValue(Areas.class);
                 List<String> groups = area.getGroups();
-                if(groups==null || groups.isEmpty() ){
-                    listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
-                            DefaultListAdapter.SELECT_ICON_INVISIBLE);
-                }else{
-                    listData.params.put(DefaultListAdapter.SET_SELECT_ICON,
-                            DefaultListAdapter.SELECT_ICON_VISIBLE);
-                }
                 listData.params.put("region", area.getRegion());
-                listData.setId(groups!=null ? groups.get(0) : "");
+                listData.setId(area.getArea());
                 listData.setTitle(area.getArea());
                 listData.setDescription(
                     area.getGroups()!= null ? "Area has load-shedding schedule(s)" :
@@ -87,23 +82,10 @@ public class AreasFragment extends SuperFragment {
 
             @Override
             public void onClick(int index, List<ListData> listData) {
-                ListData data = listData.get(index);
-                String group = data.getId();
-                if(!group.isEmpty())
-                {
-                    SchedulesFragment schedulesFragment = new SchedulesFragment();
-                    schedulesFragment.setGroup(group);
-                    schedulesFragment.setTitle(data.getTitle() + " schedule");
-                    schedulesFragment.setSubtitle(
-                            new StringBuilder()
-                                    .append(location).append(" | ")
-                                    .append(data.params.get("region"))
-                                    .toString()
-                    );
-                    replaceFragment(schedulesFragment, group);
-                }
-                Toast.makeText(listActivity, "No Load-shedding schedule found",
-                        Toast.LENGTH_SHORT);
+                String area = listData.get(index).getId();
+                Intent areaViewIntent = new Intent(listActivity, AreaViewActivity.class);
+                areaViewIntent.putExtra(AreaViewActivity.AREA_NAME, area);
+                startActivity(areaViewIntent);
             }
         });
     }
